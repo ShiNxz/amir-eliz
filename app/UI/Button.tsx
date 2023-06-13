@@ -1,0 +1,68 @@
+'use client'
+
+import { motion, MotionProps } from 'framer-motion'
+import { VariantProps, cva } from 'class-variance-authority'
+import { forwardRef } from 'react'
+import { cn } from '@/utils/cn'
+
+const buttonVariants = cva(
+	'bg-white text-slate-950 rounded-lg font-semibold relative w-fit flex flex-row items-center duration-200',
+	{
+		variants: {
+			variant: {
+				bordered: `rounded-lg`,
+			},
+			size: {
+				xs: 'px-4 py-1 text-sm',
+				sm: 'px-4 py-1.5 text-md',
+				md: 'px-8 py-2 text-lg',
+			},
+			color: {
+				solid: 'bg-slate-800 border-2 border-slate-900 hover:bg-slate-900 text-white',
+				flat: 'bg-slate-200 hover:bg-slate-300 text-slate-700',
+				gradient: 'bg-gradient-to-r from-blue-500 to-sky-500 !p-[2px] shadow-lg duration-300',
+			},
+		},
+		defaultVariants: {
+			variant: 'bordered',
+			size: 'md',
+			color: 'solid',
+		},
+	}
+)
+
+const Button = forwardRef<HTMLButtonElement, IButtonProps>(
+	({ className, size, variant, color, children, loading, disabled, ...props }, ref) => {
+		return (
+			<motion.button
+				disabled={disabled || loading || undefined}
+				whileHover={{ scale: 1.02 }}
+				whileTap={{ scale: 0.92 }}
+				ref={ref}
+				{...props}
+				className={cn(buttonVariants({ size, color, variant, className }))}
+			>
+				{color === 'gradient' ? (
+					<div className='px-8 py-2 rounded-md h-full w-full !bg-white !text-slate-900 hover:!bg-white/0 hover:!text-slate-100 duration-200 flex flex-row items-center'>
+						{children}
+					</div>
+				) : (
+					children
+				)}
+			</motion.button>
+		)
+	}
+)
+
+Button.displayName = 'Button'
+
+interface IButtonProps extends ResMotionProps {
+	children: React.ReactNode
+	className?: string
+	loading?: boolean
+	disabled?: boolean
+}
+
+type ResMotionProps = MotionProps & React.ButtonHTMLAttributes<HTMLButtonElement> & VariantProps<typeof buttonVariants>
+
+export default Button

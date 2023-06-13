@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body,
+html {
+  direction: rtl;
+}
+
+@layer base {
+	body {
+		@apply bg-white text-slate-900
+	}
+}
