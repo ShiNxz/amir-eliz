@@ -6,7 +6,7 @@ import { forwardRef } from 'react'
 import { cn } from '@/utils/cn'
 
 const buttonVariants = cva(
-	'bg-white text-slate-950 rounded-lg font-semibold relative w-fit flex flex-row items-center duration-200',
+	'bg-white text-gray-950 rounded-lg font-semibold relative w-fit flex flex-row items-center duration-200',
 	{
 		variants: {
 			variant: {
@@ -18,8 +18,8 @@ const buttonVariants = cva(
 				md: 'px-8 py-2 text-lg',
 			},
 			color: {
-				solid: 'bg-slate-800 border-2 border-slate-900 hover:bg-slate-900 text-white',
-				flat: 'bg-slate-200 hover:bg-slate-300 text-slate-700',
+				solid: 'bg-gray-800 border-2 border-gray-900 hover:bg-gray-700 text-white',
+				flat: 'bg-gray-200 hover:bg-gray-300 text-gray-700',
 				gradient: 'bg-gradient-to-r from-blue-500 to-sky-500 !p-[2px] shadow-lg duration-300',
 			},
 		},
@@ -43,7 +43,7 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
 				className={cn(buttonVariants({ size, color, variant, className }))}
 			>
 				{color === 'gradient' ? (
-					<div className='px-8 py-2 rounded-md h-full w-full !bg-white !text-slate-900 hover:!bg-white/0 hover:!text-slate-100 duration-200 flex flex-row items-center'>
+					<div className='px-8 py-2 rounded-md h-full w-full !bg-white !text-gray-900 hover:!bg-white/0 hover:!text-gray-100 duration-200 flex flex-row items-center'>
 						{children}
 					</div>
 				) : (

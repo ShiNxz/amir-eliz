@@ -1,3 +1,4 @@
+import Footer from './UI/Footer'
 import Navbar from './UI/Navbar'
 import './globals.scss'
 import { Rubik } from 'next/font/google'
@@ -15,6 +16,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 			<body className={rubik.className}>
 				<Navbar />
 				{children}
+				<Footer />
 			</body>
 		</html>
 	)

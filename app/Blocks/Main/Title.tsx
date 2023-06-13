@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { create } from 'zustand'
 
@@ -27,7 +27,7 @@ const Title = () => {
 
 	return (
 		<>
-			<motion.h1 className='text-9xl font-extrabold text-slate-800 text-center'>
+			<motion.h1 className='text-8xl font-extrabold text-gray-800 text-center'>
 				עיצוב ופיתוח{' '}
 				<AnimatePresence mode='wait' key={style}>
 					<motion.span

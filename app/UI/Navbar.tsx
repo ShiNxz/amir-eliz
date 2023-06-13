@@ -10,26 +10,26 @@ const Navbar = () => {
 	const path = usePathname()
 
 	return (
-		<div className='border-b border-slate-200'>
-			<div className='container flex flex-row items-center p-4 justify-between'>
+		<div className='border-b border-gray-200 fixed w-full backdrop-blur-xl bg-white/20 z-50'>
+			<div className='container flex flex-row items-center p-1 justify-between z-50'>
 				<img
 					src={logo.src}
 					alt='logo'
-					className='h-10'
+					className='h-14'
 				/>
 				<div className='flex flex-row gap-12'>
 					{Routes.map(({ name, route }) => (
 						<Link
 							href={route}
 							className={`${
-								route === path ? 'text-black' : 'text-slate-600'
+								route === path ? 'text-black' : 'text-gray-600'
 							} font-medium duration-200 relative`}
 							key={name}
 						>
 							{route === path && (
 								<motion.span
 									layoutId='underline'
-									className='absolute right-1/2 translate-x-1/2 top-full block h-0.5 w-3 bg-slate-950'
+									className='absolute right-1/2 trangray-x-1/2 top-full block h-0.5 w-3 bg-gray-950'
 								/>
 							)}
 							{name}

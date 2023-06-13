@@ -10,7 +10,7 @@ const MainBlock = () => {
 	const { style } = useStyle()
 
 	return (
-		<div className='py-28 flex flex-col items-center justify-center gap-10 relative overflow-x-hidden'>
+		<div className='min-h-screen pt-36 flex flex-col items-center justify-center gap-10 relative overflow-x-hidden'>
 			<Particle
 				style={variants[style].style}
 				variant='TL'
@@ -23,8 +23,6 @@ const MainBlock = () => {
 			<Description />
 			<Buttons />
 			<Companies />
-			{/* <Companies direction='NEXT' duration={3000} />
-			<Companies direction='PREV' duration={4000} /> */}
 		</div>
 	)
 }
