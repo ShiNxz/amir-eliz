@@ -11,6 +11,7 @@ import docker from '@/public/assets/techs/docker.svg'
 import tailwind from '@/public/assets/techs/tailwind.svg'
 import sass from '@/public/assets/techs/sass.svg'
 import typescript from '@/public/assets/techs/typescript.svg'
+import prisma from '@/public/assets/techs/prisma.svg'
 
 const Techs = () => {
 	return (
@@ -88,6 +89,11 @@ const TECHS = [
 	{
 		name: 'typescript',
 		img: typescript,
+		link: '#',
+	},
+	{
+		name: 'prisma',
+		img: prisma,
 		link: '#',
 	},
 ]

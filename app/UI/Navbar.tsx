@@ -12,11 +12,13 @@ const Navbar = () => {
 	return (
 		<div className='border-b border-gray-200 fixed w-full backdrop-blur-xl bg-white/20 z-50'>
 			<div className='container flex flex-row items-center p-1 justify-between z-50'>
-				<img
-					src={logo.src}
-					alt='logo'
-					className='h-14'
-				/>
+				<Link href='/'>
+					<img
+						src={logo.src}
+						alt='logo'
+						className='h-14'
+					/>
+				</Link>
 				<div className='flex flex-row gap-12'>
 					{Routes.map(({ name, route }) => (
 						<Link
@@ -29,7 +31,7 @@ const Navbar = () => {
 							{route === path && (
 								<motion.span
 									layoutId='underline'
-									className='absolute right-1/2 trangray-x-1/2 top-full block h-0.5 w-3 bg-gray-950'
+									className='absolute right-1/2 translate-x-1/2 top-full block h-0.5 w-3 bg-gray-950'
 								/>
 							)}
 							{name}

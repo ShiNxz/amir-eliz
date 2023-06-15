@@ -18,7 +18,7 @@ const buttonVariants = cva(
 				md: 'px-8 py-2 text-lg',
 			},
 			color: {
-				solid: 'bg-gray-800 border-2 border-gray-900 hover:bg-gray-700 text-white',
+				solid: 'bg-gray-900 border-2 border-gray-900 hover:bg-gray-800 text-white',
 				flat: 'bg-gray-200 hover:bg-gray-300 text-gray-700',
 				gradient: 'bg-gradient-to-r from-blue-500 to-sky-500 !p-[2px] shadow-lg duration-300',
 			},

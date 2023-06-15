@@ -1,3 +1,5 @@
+import Counter from '@/app/UI/AnimatedCounter'
+
 const Stats = () => {
 	return (
 		<div className='bg-gray-50 border border-gray-200 p-6'>
@@ -18,9 +20,11 @@ const Stats = () => {
 const Stat = ({ last, style }: { last?: boolean; style: string }) => {
 	return (
 		<div className={`flex flex-col ${last ? '' : 'border-r border-gray-200'}`}>
-			<span className={`text-7xl font-semibold text-transparent bg-clip-text bg-gradient-to-r inline-block ${style}`}>
-				90
-			</span>
+			<Counter
+				from={0}
+				to={90}
+				className={`text-7xl font-semibold text-transparent bg-clip-text bg-gradient-to-r inline-block ${style}`}
+			/>
 			<span className='text-lg font-medium text-gray-700'>אתרים שנבנו</span>
 		</div>
 	)

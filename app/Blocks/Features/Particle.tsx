@@ -1,4 +1,5 @@
 'use client'
+
 import { motion } from 'framer-motion'
 
 const Particle = ({ style, variant }: { style: string; variant: 'RIGHT' | 'LEFT' }) => {
@@ -10,7 +11,7 @@ const Particle = ({ style, variant }: { style: string; variant: 'RIGHT' | 'LEFT'
 				left: variant === 'LEFT' ? '50%' : 'auto',
 			}}
 			whileInView={{
-				opacity: 0.30,
+				opacity: 0.25,
 				right: variant === 'RIGHT' ? '60%' : 'auto',
 				left: variant === 'LEFT' ? '60%' : 'auto',
 				translateX: variant === 'RIGHT' ? '50%' : '-50%',

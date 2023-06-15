@@ -1,8 +1,9 @@
 'use client'
 
 import { useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useTransform } from 'framer-motion'
 import { create } from 'zustand'
+import { fadeUp } from '@/utils/animations'
 
 interface IStyleState {
 	style: number
@@ -15,7 +16,7 @@ export const useStyle = create<IStyleState>((set) => ({
 }))
 
 const Title = () => {
-	const { style, setStyle } = useStyle(s => s)
+	const { style, setStyle } = useStyle((s) => s)
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -27,9 +28,19 @@ const Title = () => {
 
 	return (
 		<>
-			<motion.h1 className='text-8xl font-extrabold text-gray-800 text-center'>
+			<motion.h1
+				className='text-8xl font-extrabold text-gray-800 text-center'
+				viewport={{ once: true }}
+				variants={fadeUp}
+				whileInView='in'
+				initial='start'
+				custom={0}
+			>
 				עיצוב ופיתוח{' '}
-				<AnimatePresence mode='wait' key={style}>
+				<AnimatePresence
+					mode='wait'
+					key={style}
+				>
 					<motion.span
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1, transition: { duration: 1.5 } }}

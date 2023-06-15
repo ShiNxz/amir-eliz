@@ -4,6 +4,8 @@ import { FiSettings } from 'react-icons/fi'
 import Particle from './Particle'
 import LottiePlayer from 'lottie-react'
 import lottieFile from '@/public/assets/lottie2.json'
+import { motion } from 'framer-motion'
+import { fadeDown, fadeLeft, fadeRight, fadeUp } from '@/utils/animations'
 
 const Features = () => {
 	return (
@@ -17,21 +19,45 @@ const Features = () => {
 				variant='RIGHT'
 			/>
 			<div className='flex flex-col gap-2 container text-center'>
-				<h2 className='text-6xl font-bold text-gray-950'>לורם איפסום</h2>
+				<motion.h2
+					className='text-6xl font-bold text-gray-950'
+					variants={fadeDown}
+					viewport={{ once: true }}
+					whileInView='in'
+					initial='start'
+					custom={0}
+				>
+					לורם איפסום
+				</motion.h2>
 				<div className='bg-gradient-to-r from-blue-500 to-cyan-500 h-1 w-16 mx-auto' />
-				<h6 className='text-lg text-gray-800 w-2/3 mx-auto mb-8'>
+				<motion.h6
+					className='text-lg text-gray-800 w-2/3 mx-auto mb-8'
+					variants={fadeUp}
+					viewport={{ once: true }}
+					whileInView='in'
+					initial='start'
+					custom={1}
+				>
 					לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית להאמית קרהשק סכעיט דז מא, מנכם למטכין נשואי
 					מנורך. הועניב היושבב שערש שמחויט
-				</h6>
+				</motion.h6>
 				<div className='grid grid-cols-2 gap-10'>
-					<LottiePlayer
-						animationData={lottieFile}
-						loop={true}
-					/>
+					<motion.div
+						variants={fadeLeft}
+						viewport={{ once: true }}
+						whileInView='in'
+						initial='start'
+						custom={3}
+					>
+						<LottiePlayer
+							animationData={lottieFile}
+							loop={true}
+						/>
+					</motion.div>
 					<div className='flex flex-col'>
-						<Feature />
-						<Feature />
-						<Feature />
+						<Feature index={0} />
+						<Feature index={1} />
+						<Feature index={2} />
 					</div>
 				</div>
 			</div>
@@ -39,9 +65,16 @@ const Features = () => {
 	)
 }
 
-const Feature = () => {
+const Feature = ({ index }: { index: number }) => {
 	return (
-		<div className='flex flex-col gap-3 p-6 text-start'>
+		<motion.div
+			className='flex flex-col gap-3 p-6 text-start'
+			variants={fadeRight}
+			viewport={{ once: true }}
+			whileInView='in'
+			initial='start'
+			custom={4 + index * 0.7}
+		>
 			<div className='bg-blue-100 rounded-lg p-2 w-fit h-fit'>
 				<FiSettings
 					className='text-blue-800'
@@ -53,7 +86,7 @@ const Feature = () => {
 				טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט לורם איפסום דולור
 				סיט אמט, קונסקטורר אדיפיסינג אלית להאמית קרהשק סכעיט דז מא, מנכם למטכין נשואי מנורך.
 			</p>
-		</div>
+		</motion.div>
 	)
 }
 
