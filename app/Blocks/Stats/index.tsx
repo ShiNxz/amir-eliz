@@ -23,7 +23,7 @@ const Stat = ({ last, style }: { last?: boolean; style: string }) => {
 			<Counter
 				from={0}
 				to={90}
-				className={`text-7xl font-semibold text-transparent bg-clip-text bg-gradient-to-r inline-block ${style}`}
+				className={`text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r inline-block ${style}`}
 			/>
 			<span className='text-lg font-medium text-gray-700'>אתרים שנבנו</span>
 		</div>

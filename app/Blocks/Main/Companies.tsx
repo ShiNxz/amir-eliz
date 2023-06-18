@@ -8,6 +8,7 @@ import buildisrael from '@/public/companies/buildisrael.png'
 import next from '@/public/companies/next.png'
 import startapp from '@/public/companies/startapp.png'
 import seeu from '@/public/companies/seeu.png'
+import Link from 'next/link'
 
 const Companies = () => {
 	return (
@@ -23,20 +24,25 @@ const Companies = () => {
 				חברות וארגונים
 			</motion.span>
 			<div className='flex flex-row gap-12 items-center'>
-				{comps.map(({ name, logo }, index) => (
-					// eslint-disable-next-line @next/next/no-img-element
-					<motion.img
-						src={logo.src}
-						alt={name}
-						className='max-w-[100px] max-h-10 h-auto'
+				{comps.map(({ name, logo, href }, index) => (
+					<Link
 						key={name}
-						draggable={false}
-						variants={fadeUp}
-						viewport={{ once: true }}
-						whileInView='in'
-						initial='start'
-						custom={2 + index * 0.5}
-					/>
+						href={href}
+					>
+						{/* eslint-disable-next-line @next/next/no-img-element */}
+						<motion.img
+							src={logo.src}
+							alt={name}
+							className='max-w-[100px] max-h-10 h-auto'
+							draggable={false}
+							variants={fadeUp}
+							viewport={{ once: true }}
+							whileInView='in'
+							initial='start'
+							custom={2 + index * 0.5}
+							whileHover={{ scale: 1.1, transition: { duration: 0.25, delay: 0 } }}
+						/>
+					</Link>
 				))}
 			</div>
 		</div>
@@ -47,30 +53,37 @@ const comps = [
 	{
 		name: '...',
 		logo: hamelaket,
+		href: '',
 	},
 	{
 		name: '...',
 		logo: voxbyte,
+		href: '',
 	},
 	{
 		name: '...',
 		logo: eserv,
+		href: '',
 	},
 	{
 		name: '...',
 		logo: buildisrael,
+		href: '',
 	},
 	{
 		name: '...',
 		logo: next,
+		href: '',
 	},
 	{
 		name: '...',
 		logo: startapp,
+		href: '',
 	},
 	{
 		name: '...',
 		logo: seeu,
+		href: '',
 	},
 ]
 

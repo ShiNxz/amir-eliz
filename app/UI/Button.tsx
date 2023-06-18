@@ -13,8 +13,8 @@ const buttonVariants = cva(
 				bordered: `rounded-lg`,
 			},
 			size: {
-				xs: 'px-4 py-1 text-sm',
-				sm: 'px-4 py-1.5 text-md',
+				xs: '!px-2 !py-1 text-sm',
+				sm: 'px-4 py-1.5 text-sm',
 				md: 'px-8 py-2 text-lg',
 			},
 			color: {
@@ -32,7 +32,7 @@ const buttonVariants = cva(
 )
 
 const Button = forwardRef<HTMLButtonElement, IButtonProps>(
-	({ className, size, variant, color, children, loading, disabled, ...props }, ref) => {
+	({ className, size, variant, color, children, loading, disabled, gradientClassName, ...props }, ref) => {
 		return (
 			<motion.button
 				disabled={disabled || loading || undefined}
@@ -40,10 +40,12 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
 				whileTap={{ scale: 0.92 }}
 				ref={ref}
 				{...props}
-				className={cn(buttonVariants({ size, color, variant, className }))}
+				className={cn(buttonVariants({ color, variant, className, size }))}
 			>
 				{color === 'gradient' ? (
-					<div className='px-8 py-2 rounded-md h-full w-full !bg-white !text-gray-900 hover:!bg-white/0 hover:!text-gray-100 duration-200 flex flex-row items-center'>
+					<div
+						className={`px-8 py-2 rounded-md h-full w-full !bg-white !text-gray-900 hover:!bg-white/0 hover:!text-gray-100 duration-200 flex flex-row items-center ${gradientClassName}`}
+					>
 						{children}
 					</div>
 				) : (
@@ -59,6 +61,7 @@ Button.displayName = 'Button'
 interface IButtonProps extends ResMotionProps {
 	children: React.ReactNode
 	className?: string
+	gradientClassName?: string
 	loading?: boolean
 	disabled?: boolean
 }

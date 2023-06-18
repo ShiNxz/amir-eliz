@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { motion, AnimatePresence, useTransform } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { create } from 'zustand'
 import { fadeUp } from '@/utils/animations'
 
@@ -29,7 +29,7 @@ const Title = () => {
 	return (
 		<>
 			<motion.h1
-				className='text-8xl font-extrabold text-gray-800 text-center'
+				className='text-8xl font-black text-gray-800 text-center'
 				viewport={{ once: true }}
 				variants={fadeUp}
 				whileInView='in'

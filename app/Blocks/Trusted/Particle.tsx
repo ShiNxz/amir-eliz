@@ -11,7 +11,7 @@ const Particle = ({ style, variant }: { style: string; variant: 'RIGHT' | 'LEFT'
 				left: variant === 'LEFT' ? '50%' : 'auto',
 			}}
 			whileInView={{
-				opacity: 0.20,
+				opacity: 0.25,
 				right: variant === 'RIGHT' ? '60%' : 'auto',
 				left: variant === 'LEFT' ? '60%' : 'auto',
 				translateX: variant === 'RIGHT' ? '50%' : '-50%',
@@ -19,7 +19,7 @@ const Particle = ({ style, variant }: { style: string; variant: 'RIGHT' | 'LEFT'
 					duration: 0.5,
 				},
 			}}
-			className={`absolute h-[220px] w-[550px] blur-[50px] rounded-full -bottom-32 right-1/2 ${style} ${
+			className={`absolute h-[220px] w-[800px] blur-[50px] rounded-full -bottom-32 right-1/2 ${style} ${
 				variant === 'LEFT' ? '' : ''
 			}`}
 		/>

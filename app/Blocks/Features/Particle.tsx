@@ -11,7 +11,7 @@ const Particle = ({ style, variant }: { style: string; variant: 'RIGHT' | 'LEFT'
 				left: variant === 'LEFT' ? '50%' : 'auto',
 			}}
 			whileInView={{
-				opacity: 0.25,
+				opacity: 0.22,
 				right: variant === 'RIGHT' ? '60%' : 'auto',
 				left: variant === 'LEFT' ? '60%' : 'auto',
 				translateX: variant === 'RIGHT' ? '50%' : '-50%',

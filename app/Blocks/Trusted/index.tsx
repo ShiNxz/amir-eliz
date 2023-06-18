@@ -7,16 +7,16 @@ import '@egjs/react-flicking/dist/flicking.css'
 import { AutoPlay } from '@egjs/flicking-plugins'
 
 const TrustedSection = () => {
-	const plugins = [new AutoPlay({ duration: 4000, direction: 'NEXT', stopOnHover: false })]
+	const plugins = [new AutoPlay({ duration: 4000, direction: 'PREV', stopOnHover: false })]
 
 	return (
 		<div className='py-32 bg-white relative overflow-clip'>
 			<Particle
-				style='bg-blue-500'
+				style='bg-indigo-500'
 				variant='LEFT'
 			/>
 			<Particle
-				style='bg-cyan-500'
+				style='bg-pink-500'
 				variant='RIGHT'
 			/>
 			<div
@@ -64,6 +64,7 @@ const Trusted = forwardRef(({ name, text, avatar }: { name: string; text: string
 				{`"`}
 			</span>
 			<div className='flex flex-row gap-2 pt-8'>
+				{/* eslint-disable-next-line @next/next/no-img-element */}
 				<img
 					src={avatar}
 					alt={name}
