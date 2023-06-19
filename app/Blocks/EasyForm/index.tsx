@@ -1,6 +1,6 @@
 'use client'
 
-import ServiceTypes from '../../../data/ServiceTypes'
+import ServiceTypes from '@/data/ServiceTypes'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { fadeRight, fadeUp } from '@/utils/animations'
@@ -42,7 +42,7 @@ const EasyForm = () => {
 						</Link>
 					)
 				})}
-				<Link href={`/contact`}>
+				<Link href='/contact'>
 					<motion.div
 						className='rounded-md p-8 cursor-pointer bg-gray-100 hover:bg-white text-xl font-medium flex flex-col items-center justify-center gap-2 w-full text-gray-900'
 						variants={fadeUp}

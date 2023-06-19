@@ -7,7 +7,7 @@ const Service = ({ tab }: IProps) => {
 
 	return (
 		<div className='flex flex-col gap-4 col-span-3'>
-			<AnimatePresence key={tab}>
+			<AnimatePresence key={tab.toString()}>
 				<motion.h4
 					className='text-5xl font-semibold'
 					variants={fadeRight}

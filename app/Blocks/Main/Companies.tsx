@@ -28,6 +28,7 @@ const Companies = () => {
 					<Link
 						key={name}
 						href={href}
+						target='_blank'
 					>
 						{/* eslint-disable-next-line @next/next/no-img-element */}
 						<motion.img
@@ -51,39 +52,39 @@ const Companies = () => {
 
 const comps = [
 	{
-		name: '...',
+		name: 'המלקט',
 		logo: hamelaket,
-		href: '',
+		href: 'https://hamelaket.co.il',
 	},
 	{
-		name: '...',
+		name: 'VoxByte',
 		logo: voxbyte,
-		href: '',
+		href: 'voxbyte.io',
 	},
 	{
-		name: '...',
+		name: 'ESERV',
 		logo: eserv,
-		href: '',
+		href: 'https://www.eserv.co.il',
 	},
 	{
-		name: '...',
+		name: 'BuildIsrael',
 		logo: buildisrael,
-		href: '',
+		href: 'https://www.buildisrael.net',
 	},
 	{
-		name: '...',
+		name: 'Next-il',
 		logo: next,
-		href: '',
+		href: 'https://next-il.co.il',
 	},
 	{
-		name: '...',
+		name: 'StartApp',
 		logo: startapp,
-		href: '',
+		href: 'https://start-app.co.il',
 	},
 	{
-		name: '...',
+		name: 'SeeU',
 		logo: seeu,
-		href: '',
+		href: 'https://hamelaket.co.il',
 	},
 ]
 

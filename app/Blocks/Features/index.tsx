@@ -1,11 +1,12 @@
 'use client'
 
-import { FiSettings } from 'react-icons/fi'
+import type { IconType } from 'react-icons/lib'
 import Particle from './Particle'
 import LottiePlayer from 'lottie-react'
 import lottieFile from '@/public/assets/lottie2.json'
 import { motion } from 'framer-motion'
 import { fadeDown, fadeLeft, fadeRight, fadeUp } from '@/utils/animations'
+import FeaturesArray from '@/data/Features'
 
 const Features = () => {
 	return (
@@ -23,14 +24,14 @@ const Features = () => {
 			/>
 			<div className='flex flex-col gap-2 container text-center'>
 				<motion.h2
-					className='text-6xl font-bold text-gray-950 z-10'
+					className='text-6xl font-bold text-gray-950 z-20'
 					variants={fadeDown}
 					viewport={{ once: true }}
 					whileInView='in'
 					initial='start'
 					custom={0}
 				>
-					פיתוח לכל צורך
+					האתר המושלם עבורכם
 				</motion.h2>
 				<motion.div
 					className='bg-gradient-to-r from-blue-500 to-cyan-500 h-1 w-16 mx-auto'
@@ -48,9 +49,10 @@ const Features = () => {
 					initial='start'
 					custom={1}
 				>
-					בין אם אתם צריכים אתר עסקי, בלוג אישי, חנות אינטרנט או כל סוג אחר של אתר, אני מספק פיתוח איכותי ומותאם לצרכים הייחודיים שלכם.
+					בין אם אתם צריכים אתר עסקי, בלוג אישי, חנות אינטרנט או כל סוג אחר של אתר, אני מספק פיתוח איכותי
+					ומותאם לצרכים הייחודיים שלכם
 				</motion.h6>
-				<div className='grid grid-cols-2 gap-10'>
+				<div className='grid grid-cols-2 gap-10 items-center'>
 					<motion.div
 						variants={fadeLeft}
 						viewport={{ once: true }}
@@ -64,9 +66,13 @@ const Features = () => {
 						/>
 					</motion.div>
 					<div className='flex flex-col'>
-						<Feature index={0} />
-						<Feature index={1} />
-						<Feature index={2} />
+						{FeaturesArray.map((feature, index) => (
+							<Feature
+								index={0}
+								key={feature.title}
+								{...feature}
+							/>
+						))}
 					</div>
 				</div>
 			</div>
@@ -74,10 +80,12 @@ const Features = () => {
 	)
 }
 
-const Feature = ({ index }: { index: number }) => {
+const Feature = ({ index, icon, title, text }: IFeature) => {
+	const FeatureIcon = icon
+
 	return (
 		<motion.div
-			className='flex flex-col gap-3 p-6 text-start'
+			className='flex flex-col gap-2 p-6 text-start'
 			variants={fadeRight}
 			viewport={{ once: true }}
 			whileInView='in'
@@ -85,18 +93,22 @@ const Feature = ({ index }: { index: number }) => {
 			custom={4 + index * 0.7}
 		>
 			<div className='bg-blue-100 rounded-lg p-2 w-fit h-fit'>
-				<FiSettings
+				<FeatureIcon
 					className='text-blue-800'
-					size={24}
+					size={20}
 				/>
 			</div>
-			<h3 className='text-3xl font-semibold text-gray-950'>כותרת כותרת</h3>
-			<p className='text-gray-700'>
-				טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט טקסט לורם איפסום דולור
-				סיט אמט, קונסקטורר אדיפיסינג אלית להאמית קרהשק סכעיט דז מא, מנכם למטכין נשואי מנורך.
-			</p>
+			<h3 className='text-3xl font-semibold text-gray-950'>{title}</h3>
+			<p className='text-gray-700'>{text}</p>
 		</motion.div>
 	)
+}
+
+interface IFeature {
+	index: number
+	icon: IconType
+	title: string
+	text: string
 }
 
 export default Features

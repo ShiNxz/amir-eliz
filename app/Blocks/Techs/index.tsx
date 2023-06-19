@@ -14,6 +14,7 @@ import tailwind from '@/public/assets/techs/tailwind.svg'
 import sass from '@/public/assets/techs/sass.svg'
 import typescript from '@/public/assets/techs/typescript.svg'
 import prisma from '@/public/assets/techs/prisma.svg'
+import socketio from '@/public/assets/techs/socketio.svg'
 
 import { motion } from 'framer-motion'
 import { fadeUp } from '@/utils/animations'
@@ -27,6 +28,7 @@ const Techs = () => {
 					<Link
 						href={t.link}
 						key={t.name}
+						target='_blank'
 					>
 						<motion.img
 							src={t.img.src || t.img}
@@ -50,62 +52,67 @@ const TECHS = [
 	{
 		name: 'React',
 		img: nextjs.src,
-		link: '#',
+		link: 'https://react.dev',
 	},
 	{
 		name: 'Next.js',
 		img: react.src,
-		link: '#',
+		link: 'https://nextjs.org',
 	},
 	{
-		name: 'Next.js',
+		name: 'Node.js',
 		img: node,
-		link: '#',
+		link: 'https://nodejs.org/en',
 	},
 	{
 		name: 'MySQL',
 		img: mysql,
-		link: '#',
+		link: 'https://www.mysql.com',
 	},
 	{
 		name: 'MongoDB',
 		img: mongodb,
-		link: '#',
+		link: 'https://www.mongodb.com',
 	},
 	{
 		name: 'Php',
 		img: php,
-		link: '#',
+		link: 'https://www.php.net',
 	},
 	{
 		name: 'Aws',
 		img: aws,
-		link: '#',
+		link: 'https://aws.amazon.com',
 	},
 	{
 		name: 'Docker',
 		img: docker,
-		link: '#',
+		link: 'https://www.docker.com',
 	},
 	{
-		name: 'tailwind',
+		name: 'Tailwind',
 		img: tailwind,
-		link: '#',
+		link: 'https://tailwindcss.com',
 	},
 	{
-		name: 'sass',
+		name: 'Sass / Scss',
 		img: sass,
-		link: '#',
+		link: 'https://sass-lang.com',
 	},
 	{
-		name: 'typescript',
+		name: 'TypeScript',
 		img: typescript,
-		link: '#',
+		link: 'https://www.typescriptlang.org',
 	},
 	{
-		name: 'prisma',
+		name: 'Prisma',
 		img: prisma,
-		link: '#',
+		link: 'https://www.prisma.io',
+	},
+	{
+		name: 'Socket.IO',
+		img: socketio,
+		link: 'https://socket.io',
 	},
 ]
 

@@ -3,8 +3,9 @@
 import type { IconType } from 'react-icons/lib'
 import { motion } from 'framer-motion'
 import { fadeUp } from '@/utils/animations'
+import Link from 'next/link'
 
-const Block = ({ title, text, icon, index }: IProps) => {
+const Block = ({ title, text, icon, link, index }: IProps) => {
 	const Icon = icon
 
 	return (
@@ -24,7 +25,17 @@ const Block = ({ title, text, icon, index }: IProps) => {
 			</div>
 			<div className='flex flex-col'>
 				<h5 className='text-sm'>{title}</h5>
-				<h5 className='text-gray-900 font-semibold text-base'>{text}</h5>
+				{link ? (
+					<Link
+						href={link}
+						className='text-gray-900 hover:text-gray-700 duration-300 hover:underline font-semibold text-base'
+						target='_blank'
+					>
+						{text}
+					</Link>
+				) : (
+					<h5 className='text-gray-900 font-semibold text-base'>{text}</h5>
+				)}
 			</div>
 		</motion.div>
 	)
@@ -35,6 +46,7 @@ interface IProps {
 	text: string
 	icon: IconType
 	index: number
+	link?: string
 }
 
 export default Block
