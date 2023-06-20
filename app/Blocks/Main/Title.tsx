@@ -21,7 +21,7 @@ const Title = () => {
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setStyle(style + 1 === variants.length ? 0 : style + 1)
-		}, 6000)
+		}, 5000)
 
 		return () => clearInterval(interval)
 	}, [setStyle, style])
@@ -68,12 +68,27 @@ export const variants = [
 		shadow: 'shadow-red-500/20',
 	},
 	{
+		name: 'חנויות אינטרנט',
+		style: 'from-green-500 to-lime-500',
+		shadow: 'shadow-green-500//20',
+	},
+	{
+		name: 'אפליקציות',
+		style: 'from-yellow-500 to-orange-500',
+		shadow: 'shadow-orange-400//20',
+	},
+	{
 		name: 'אתרי אינטרנט',
 		style: 'from-pink-500 to-rose-500',
 		shadow: 'shadow-rose-500/20',
 	},
 	{
-		name: 'אתרי סטארטאפ',
+		name: 'מערכות ניהול',
+		style: 'from-lime-500 to-green-500',
+		shadow: 'shadow-lime-500/20',
+	},
+	{
+		name: 'אתרי Startup',
 		style: 'from-purple-500 to-indigo-500',
 		shadow: 'shadow-indigo-500/20',
 	},

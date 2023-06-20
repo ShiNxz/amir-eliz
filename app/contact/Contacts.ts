@@ -1,4 +1,4 @@
-import { FaInstagram, FaLinkedin, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa'
+import { FaGithub, FaInstagram, FaLinkedin, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa'
 import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi'
 
 export const Contacts = [
@@ -32,7 +32,7 @@ export const Networks = [
 		icon: FaLinkedin,
 	},
 	{
-		link: 'https://www.linkedin.com/in/amireliz/',
-		icon: FaLinkedinIn,
+		link: 'https://github.com/ShiNxz',
+		icon: FaGithub,
 	},
 ]

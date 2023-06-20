@@ -5,6 +5,7 @@ import { forwardRef } from 'react'
 import Flicking from '@egjs/react-flicking'
 import '@egjs/react-flicking/dist/flicking.css'
 import { AutoPlay } from '@egjs/flicking-plugins'
+import TrustedArray from '@/data/Trusted'
 
 const TrustedSection = () => {
 	const plugins = [new AutoPlay({ duration: 4000, direction: 'PREV', stopOnHover: false })]
@@ -29,21 +30,12 @@ const TrustedSection = () => {
 					plugins={plugins}
 					align='prev'
 				>
-					<Trusted
-						name='דניאל כהן'
-						avatar='https://vercel.com/_next/image?url=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Fv1669994321%2Fpreviews%2Favatar-tatiana.png&w=48&q=100&dpl=dpl_4JKyZX6rFqQS41tJicUhPzDX6P2c'
-						text='לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית ושבעגט ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.'
-					/>
-					<Trusted
-						name='דניאל כהן'
-						avatar='https://vercel.com/_next/image?url=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Fv1669994321%2Fpreviews%2Favatar-tatiana.png&w=48&q=100&dpl=dpl_4JKyZX6rFqQS41tJicUhPzDX6P2c'
-						text='לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית ושבעגט ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.'
-					/>
-					<Trusted
-						name='דניאל כהן'
-						avatar='https://vercel.com/_next/image?url=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Fv1669994321%2Fpreviews%2Favatar-tatiana.png&w=48&q=100&dpl=dpl_4JKyZX6rFqQS41tJicUhPzDX6P2c'
-						text='לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית ושבעגט ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.'
-					/>
+					{TrustedArray.map((trusted) => (
+						<Trusted
+							{...trusted}
+							key={trusted.name}
+						/>
+					))}
 				</Flicking>
 			</div>
 		</div>
