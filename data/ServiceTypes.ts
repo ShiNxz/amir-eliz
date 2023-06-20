@@ -1,7 +1,7 @@
-import { BiJoystick, BiCart, BiMobile, BiRocket, BiCog, BiCreditCard, BiBookBookmark } from 'react-icons/bi'
+import { BiJoystick, BiCart, BiMobile, BiRocket, BiCog } from 'react-icons/bi'
 import { BsFileEarmarkPersonFill } from 'react-icons/bs'
 import { RiPagesLine } from 'react-icons/ri'
-import { TbBrandKickstarter, TbDeviceMobileMessage } from 'react-icons/tb'
+import { TbDeviceMobileMessage } from 'react-icons/tb'
 
 const ServiceTypes = [
 	{
