@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import ServiceTypes from '../../../data/ServiceTypes'
-import { fadeRight, fadeUpSlide } from '@/utils/animations'
+import { fadeRight2, fadeRight, fadeUpSlide } from '@/utils/animations'
 
 const Service = ({ tab }: IProps) => {
 	const service = ServiceTypes[tab]
@@ -10,7 +10,7 @@ const Service = ({ tab }: IProps) => {
 			<AnimatePresence key={tab.toString()}>
 				<motion.h4
 					className='text-5xl font-semibold'
-					variants={fadeRight}
+					variants={fadeRight2}
 					viewport={{ once: true }}
 					whileInView='in'
 					initial='start'

@@ -55,9 +55,6 @@ const Counter = ({ from, to, className }: CounterProps) => {
 	return (
 		<motion.p
 			ref={nodeRef}
-			initial={{ opacity: 0, scale: 0.1 }}
-			whileInView={{ opacity: 1, scale: 1 }}
-			transition={{ duration: 0.4 }}
 			className={className}
 			viewport={{ once: true }}
 		/>

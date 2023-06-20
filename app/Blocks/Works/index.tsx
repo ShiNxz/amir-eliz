@@ -26,13 +26,18 @@ const Works = () => {
 				initial='start'
 				custom={5}
 			>
-				<Button
-					variant='bordered'
-					color='gradient'
-					className='from-indigo-500 to-purple-600 text-white mt-12'
+				<Link
+					href='/projects'
+					passHref
 				>
-					מעבר לשאר הפרויקטים <HiOutlineArrowNarrowLeft className='mr-6' />
-				</Button>
+					<Button
+						variant='bordered'
+						color='gradient'
+						className='from-indigo-500 to-purple-600 text-white mt-12'
+					>
+						מעבר לשאר הפרויקטים <HiOutlineArrowNarrowLeft className='mr-6' />
+					</Button>
+				</Link>
 			</motion.div>
 		</div>
 	)
