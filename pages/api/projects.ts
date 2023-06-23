@@ -9,12 +9,19 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	switch (method) {
 		case 'GET': {
 			try {
-				const projects = await Project.find({ pinned: true })
-					.limit(3)
-					.select('_id title description image type')
-					.lean()
+				const projects = await Project.find().select('title description image type techs _id').lean()
 
-				return res.status(200).json({ success: true, projects })
+				const types: string[] = []
+				const techs: string[] = []
+
+				projects.map((project) => {
+					if (!types.includes(project.type)) types.push(project.type)
+					project.techs.map((tech) => {
+						if (!techs.includes(tech)) techs.push(tech)
+					})
+				})
+
+				return res.status(200).json({ success: true, projects, types, techs })
 			} catch (error) {
 				return res.status(500).json({ success: false, error })
 			}
@@ -25,9 +32,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	}
 }
 
-export interface IHomeResponse {
+export interface IProjectsResponse {
 	success: boolean
 	projects: IProject[]
+	types: string[]
+	techs: string[]
 }
 
 export interface IProject {
@@ -36,6 +45,7 @@ export interface IProject {
 	description: string
 	image: string
 	type: string
+	techs: string[]
 }
 
 export default handler

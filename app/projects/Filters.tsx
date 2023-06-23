@@ -1,19 +1,32 @@
 'use client'
 
 import { Checkbox } from '@mantine/core'
-import { NameToKey } from './Store'
+import useProjectsStore, { NameToKey } from './Store'
 import useFilters from './Store'
-import Tags from './Tags'
 import { motion } from 'framer-motion'
 import { fadeRight, fadeUp } from '@/utils/animations'
 
 const Filters = () => {
+	const types = useProjectsStore((page) => page.types)
+	const techs = useProjectsStore((page) => page.techs)
+
+	const filterTypes = [
+		{
+			title: 'סוג האתר',
+			filters: types,
+		},
+		{
+			title: 'טכנולוגיות',
+			filters: techs,
+		},
+	]
+
 	return (
 		<div className='flex flex-col gap-8 col-span-1'>
-			{Tags.map((tag, tagIndex) => (
+			{filterTypes.map((filterType, index) => (
 				<div
 					className='flex flex-col'
-					key={tag.title}
+					key={filterType.title}
 				>
 					<motion.h4
 						className='text-2xl font-semibold'
@@ -21,9 +34,9 @@ const Filters = () => {
 						viewport={{ once: true }}
 						whileInView='in'
 						initial='start'
-						custom={1 + tagIndex * 2}
+						custom={1 + index * 2}
 					>
-						{tag.title}
+						{filterType.title}
 					</motion.h4>
 					<motion.div
 						className='w-full h-0.5 block bg-gray-200 mt-2 mb-4'
@@ -31,15 +44,15 @@ const Filters = () => {
 						viewport={{ once: true }}
 						whileInView='in'
 						initial='start'
-						custom={1 + tagIndex * 2}
+						custom={1 + index * 2}
 					/>
 					<div className='flex flex-col gap-2'>
-						{tag.options.map((option, optionIndex) => (
+						{filterType.filters.map((filter, filterIndex) => (
 							<Filter
-								key={option.key}
-								keys={option.key}
-								title={option.title}
-								index={optionIndex + tagIndex * 2}
+								key={filter}
+								keys={filter}
+								title={filter}
+								index={filterIndex + index * 2}
 							/>
 						))}
 					</div>

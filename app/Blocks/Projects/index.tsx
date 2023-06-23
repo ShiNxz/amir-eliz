@@ -8,15 +8,22 @@ import { motion } from 'framer-motion'
 import { fadeUp } from '@/utils/animations'
 import { HiOutlineArrowNarrowLeft } from 'react-icons/hi'
 import Button from '@/app/UI/Button'
+import useHomeStore from '@/app/Store'
 
-const Works = () => {
+const Projects = () => {
+	const projects = useHomeStore((page) => page.projects)
+
 	return (
 		<div className='py-32 container'>
 			<Title />
 			<div className='grid grid-cols-3 gap-8'>
-				<Work index={0} />
-				<Work index={1} />
-				<Work index={2} />
+				{projects.map((project, index) => (
+					<Project
+						key={project._id}
+						index={index}
+						{...project}
+					/>
+				))}
 			</div>
 			<motion.div
 				className='flex justify-center'
@@ -43,10 +50,10 @@ const Works = () => {
 	)
 }
 
-export const Work = ({ index }: IWorkProps) => {
+export const Project = ({ index, title, description, _id, image, type }: IProjectProps) => {
 	return (
 		<Link
-			href='/'
+			href={`/projects/${_id}`}
 			passHref
 		>
 			<motion.div
@@ -58,19 +65,16 @@ export const Work = ({ index }: IWorkProps) => {
 				custom={3 + index * 0.7}
 			>
 				<img
-					className='w-full h-64 object-cover'
-					src='https://cdn.dribbble.com/userupload/6338264/file/original-dfc35ba3e9e5dbbc72aa2d69b566a46a.jpg?compress=1&resize=752x564&vertical=center'
-					alt='Sunset in the mountains'
+					className='w-full h-56 object-cover'
+					src={image}
+					alt={title}
 				/>
 				<div className='p-4 flex flex-col'>
-					<div className='font-bold text-xl mb-2'>לורם איפסום אכדדחי</div>
-					<p className='text-gray-700 text-base mb-8'>
-						לורם איפסום לורם איפסום לורם איפסום לורם איפסום לורם איפסום לורם איפסום לורם איפסום לורם איפסום
-						לורם איפסום לורם איפסום לורם איפסום לורם איפסום
-					</p>
+					<div className='font-bold text-xl mb-2'>{title}</div>
+					<p className='text-gray-700 text-base mb-8'>{description}</p>
 
 					<div className='flex flex-row justify-between items-center'>
-						<Tag>דף נחיתה</Tag>
+						<Tag>{type}</Tag>
 						<BsBoxArrowUpLeft className='text-gray-500 hover:text-gray-800 duration-200' />
 					</div>
 				</div>
@@ -79,8 +83,13 @@ export const Work = ({ index }: IWorkProps) => {
 	)
 }
 
-interface IWorkProps {
+interface IProjectProps {
 	index: number
+	_id: string
+	title: string
+	description: string
+	image: string
+	type: string
 }
 
-export default Works
+export default Projects
