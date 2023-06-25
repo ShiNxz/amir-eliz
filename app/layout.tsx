@@ -1,10 +1,10 @@
-import Footer from './UI/Footer'
-import Navbar from './UI/Navbar'
 import { Noto_Sans_Hebrew as NotoHE } from 'next/font/google'
-import Providers from './UI/Providers'
 import './globals.scss'
 import keywords from '../data/SEO'
 import { description, title } from './../data/SEO'
+import Providers from './(main)/UI/Providers'
+import Footer from './(main)/UI/Footer'
+import Navbar from './(main)/UI/Navbar'
 
 const notoHe = NotoHE({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800', '900'] })
 
@@ -48,11 +48,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 			dir='rtl'
 		>
 			<body className={notoHe.className}>
-				<Providers>
-					<Navbar />
-					{children}
-					<Footer />
-				</Providers>
+				<Providers>{children}</Providers>
 			</body>
 		</html>
 	)
