@@ -25,12 +25,17 @@ export const PAGES: IPage[] = [
 
 export const ADMIN_PAGES: IPage[] = [
 	{
-		path: 'm/users',
-		title: 'ניהול משתמשים',
+		path: 'companies',
+		title: 'ניהול חברות',
 		icon: <TiGroupOutline size={18} />,
 	},
 	{
-		path: 'm/tickets',
+		path: 'projects',
+		title: 'ניהול פרויקטים',
+		icon: <TiGroupOutline size={18} />,
+	},
+	{
+		path: 'forms',
 		title: 'ניהול פניות',
 		icon: <TiMessages size={18} />,
 	},

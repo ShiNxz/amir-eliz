@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import type { IDecodedUser } from '@/utils/middlewares/isLoggedIn'
 import db from '@/utils/db'
 import jwt from 'jsonwebtoken'
-import User from '@/models/User'
+import Company from '@/models/Company'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	await db()
@@ -14,13 +14,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 			let decoded = jwt.verify(req.cookies.token as string, process.env.JWT_SECRET || '') as IDecodedUser
 
-			const user = await User.findById(decoded.userId).limit(1)
-			if (!user) return res.status(401).json({ success: false, error: 'לא נמצא משתמש קיים עם הפרטים שנרשמו!' })
+			const company = await Company.findById(decoded.userId).limit(1)
+			if (!company) return res.status(401).json({ success: false, error: 'לא נמצא משתמש קיים עם הפרטים שנרשמו!' })
 
 			const authUser: IAuthUser = {
-				_id: user._id.toString(),
-				phone: user.phone,
-				name: user.name,
+				_id: company._id.toString(),
+				user: {
+					phone: company.user.phone,
+					name: company.user.name,
+				},
+				name: company.name,
 			}
 
 			return res.status(200).json({ success: true, user: authUser })
@@ -33,8 +36,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 export interface IAuthUser {
 	_id: string
-	phone: string
 	name: string
+	user: {
+		phone: string
+		name: string
+	}
 }
 
 export default handler

@@ -1,0 +1,15 @@
+@layer components {
+	.MuiDataGrid-main,
+	.MuiDataGrid-toolbarContainer,
+	.MuiDataGrid-footerContainer {
+		@apply rounded-lg text-slate-900 relative border mb-6;
+
+		border-color: rgb(203 213 225 / 0.7) !important;
+		background-color: #fff !important;
+	}
+}
+
+.MuiTablePagination-toolbar {
+	height: 50px !important;
+	min-height: 50px !important;
+}

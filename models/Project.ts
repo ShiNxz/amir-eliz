@@ -3,7 +3,6 @@ import { models, model, Schema, Model, ObjectId } from 'mongoose'
 export interface IProject extends Document {
 	_id: ObjectId
 	title: string
-	tags: string[]
 	description: string
 	image: string
 	/**
@@ -12,8 +11,7 @@ export interface IProject extends Document {
 	pinned: boolean
 	type: string
 	techs: string[]
-	
-	owner?: ObjectId
+
 	repository?: string
 	website?: string
 	fullDescription: string
@@ -25,19 +23,12 @@ export interface IProject extends Document {
 const ProjectSchema: Schema<IProject> = new Schema(
 	{
 		title: String,
-		tags: [String],
 		description: String,
 		image: String,
 		pinned: Boolean,
 
 		type: String,
 		techs: [String],
-
-		owner: {
-			type: Schema.Types.ObjectId,
-			ref: 'User',
-			required: false,
-		},
 
 		repository: String,
 		website: String,

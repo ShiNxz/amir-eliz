@@ -1,4 +1,3 @@
-import useAuth from '@/utils/hooks/useAuth'
 import CheckLogin from './UI/CheckLogin'
 import Content from './UI/Content'
 import Navbar from './UI/Navbar'

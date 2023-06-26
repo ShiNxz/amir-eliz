@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
 import axios from 'axios'
 import db from '@/utils/db'
-import User from '@/models/User'
+import Company from '@/models/Company'
 import jwt from 'jsonwebtoken'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -20,8 +20,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 				const phoneNumber = parsePhoneNumberFromString(phone, defaultCountry)
 				if (!phoneNumber) return res.status(400).json({ success: false, error: 'מספר הטלפון שגוי' })
 
-				const user = await User.findOne({ phone })
-				if (!user) return res.status(400).json({ success: false, error: 'המשתמש לא נמצא' })
+				const company = await Company.findOne({ 'user.phone': phone })
+				if (!company) return res.status(400).json({ success: false, error: 'המשתמש לא נמצא' })
 
 				try {
 					const formattedNumber = phoneNumber.format('E.164')
@@ -41,7 +41,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 					const token = jwt.sign(
 						{
-							userId: user._id,
+							userId: company._id,
 						},
 						process.env.JWT_SECRET || ''
 					)

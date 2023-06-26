@@ -43,7 +43,7 @@ const Home = () => {
 				/>
 			</div>
 			<div className='grid grid-cols-2 gap-4'>
-				<AreaChart
+				{/* <AreaChart
 					label=''
 					categories={getLastXDays(7)}
 					data={demoChart}
@@ -54,7 +54,7 @@ const Home = () => {
 					categories={getLastXDays(7)}
 					data={demoChart2}
 					height={500}
-				/>
+				/> */}
 			</div>
 		</div>
 	)

@@ -1,12 +1,14 @@
 import { Noto_Sans_Hebrew as NotoHE } from 'next/font/google'
-import './globals.scss'
+import './styles/globals.scss'
 import keywords from '../data/SEO'
 import { description, title } from './../data/SEO'
 import Providers from './(main)/UI/Providers'
-import Footer from './(main)/UI/Footer'
-import Navbar from './(main)/UI/Navbar'
 
-const notoHe = NotoHE({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800', '900'] })
+const notoHe = NotoHE({
+	subsets: ['latin'],
+	weight: ['300', '400', '500', '600', '700', '800', '900'],
+	variable: '--font-noto',
+})
 
 export const metadata = {
 	title,

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import jwt from 'jsonwebtoken'
-import User, { type IUser } from '@/models/User'
+import User, { type IUser } from '@/models/Company'
 
 const AuthMiddleware = (req: NextApiRequest, res: NextApiResponse) => {
 	return new Promise(async (resolve, reject) => {
