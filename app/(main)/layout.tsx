@@ -12,7 +12,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 }
 
 export const metadata = {
-	title: 'אמיר אליז | פאנל ניהול',
+	title: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} | פאנל ניהול`,
 	robots: {
 		index: false,
 	},

@@ -64,7 +64,7 @@ const keywords = [
 	'אבטחת אתרים',
 ]
 
-export const title = 'אמיר אליז | עיצוב ופיתוח אתרים'
+export const title = `${process.env.NEXT_PUBLIC_WEBSITE_NAME} | עיצוב ופיתוח אתרים`
 export const description = 'פתרונות מותאמים אישית לצרכי הלקוח, פיתוח אתרים ואפליקציות בדגש על עיצוב מודרני, חווית משתמש מעולה ואבטחה מקסימלית, כל פרויקט נבנה בהתאמה אישית לצרכי הלקוח, ובכך מבטיח את התוצאה הטובה ביותר'
 
 export default keywords

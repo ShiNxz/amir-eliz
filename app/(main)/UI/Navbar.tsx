@@ -21,7 +21,7 @@ const Navbar = () => {
 					href='/'
 					className='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-500 font-bold text-xl py-4'
 				>
-					אמיר אליז
+					{process.env.NEXT_PUBLIC_WEBSITE_NAME}
 				</Link>
 
 				<div className='flex flex-row gap-12 h-full'>
