@@ -1,11 +1,11 @@
 'use client'
 
-// import useAuth from '@/utils/hooks/useAuth'
+import useAuth from '@/utils/hooks/useAuth'
 import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 
 const Content = ({ children }: { children: React.ReactNode }) => {
-	// const { isLoggedIn, isLoading } = useAuth()
+	const { isLoggedIn, isLoading } = useAuth()
 	const path = usePathname()
 
 	return (
@@ -17,8 +17,7 @@ const Content = ({ children }: { children: React.ReactNode }) => {
 			transition={{ duration: 0.25 }}
 			key={path}
 		>
-			{/* {!isLoggedIn || isLoading ? <LoadingState /> : <>{children}</>} */}
-			{false ? <LoadingState /> : <>{children}</>}
+			{!isLoggedIn || isLoading ? <LoadingState /> : <>{children}</>}
 		</motion.div>
 	)
 }

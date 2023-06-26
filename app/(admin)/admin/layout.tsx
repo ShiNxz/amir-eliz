@@ -1,3 +1,4 @@
+import useAuth from '@/utils/hooks/useAuth'
 import CheckLogin from './UI/CheckLogin'
 import Content from './UI/Content'
 import Navbar from './UI/Navbar'
@@ -6,7 +7,7 @@ import Sidebar from './UI/Sidebar'
 const Layout = ({ children }: LayoutProps) => {
 	return (
 		<>
-			{/* <CheckLogin /> */}
+			<CheckLogin />
 			<div className='h-screen w-screen flex flex-row'>
 				<Sidebar />
 				<div

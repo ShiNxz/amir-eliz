@@ -8,6 +8,7 @@ export const fadeUp: Variants = {
 		transition: { type: 'spring', stiffness: 300, damping: 22, delay: i * 0.1 },
 	}),
 	start: { opacity: 0, y: 30, scale: 0.9, transition: { duration: 0.2 } },
+	exit: { opacity: 0, y: -30, scale: 0.9, transition: { duration: 0.2 } },
 }
 
 export const fadeUpSlide: Variants = {

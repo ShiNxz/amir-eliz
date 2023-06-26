@@ -9,7 +9,7 @@ const CheckLogin = () => {
 	const { isLoggedIn, isLoading } = useAuth()
 
 	useEffect(() => {
-		if (!isLoading && !isLoggedIn) router.push('/login')
+		if (!isLoading && isLoggedIn) router.push('/admin')
 	}, [isLoggedIn, isLoading])
 
 	return <></>

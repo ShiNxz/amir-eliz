@@ -3,8 +3,8 @@ import { models, model, Schema, Model, ObjectId } from 'mongoose'
 export interface IUser extends Document {
 	_id: ObjectId
 
+	name: string
 	phone: string
-	isCustomer: boolean
 	isAdmin: boolean
 
 	createdAt: number
@@ -13,8 +13,8 @@ export interface IUser extends Document {
 
 const UserSchema: Schema<IUser> = new Schema(
 	{
+		name: String,
 		phone: String,
-		isCustomer: Boolean,
 		isAdmin: Boolean,
 
 		createdAt: Number,

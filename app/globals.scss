@@ -4,11 +4,20 @@
 
 body,
 html {
-  direction: rtl;
+	direction: rtl;
 }
 
 @layer base {
 	body {
-		@apply bg-white text-gray-900
+		@apply bg-white text-gray-900;
+	}
+}
+
+.styles_react-code-input__CRulA {
+	direction: ltr;
+	margin-top: 10px;
+
+	& > input {
+		font-family: unset !important;
 	}
 }

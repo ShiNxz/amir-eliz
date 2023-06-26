@@ -1,4 +1,3 @@
-
 import Title from './Title'
 import AreaChart from './UI/Charts/Area'
 import getLastXDays from './UI/Charts/GetDateString'

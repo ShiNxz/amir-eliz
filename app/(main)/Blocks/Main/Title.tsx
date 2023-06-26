@@ -1,10 +1,11 @@
 'use client'
 
-import { createRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useEffect } from 'react'
+import { motion } from 'framer-motion'
 import { create } from 'zustand'
 import { fadeUp } from '@/utils/animations'
 import { TypeAnimation } from 'react-type-animation'
+import { usePathname } from 'next/navigation'
 
 interface IStyleState {
 	style: number
@@ -18,31 +19,15 @@ export const useStyle = create<IStyleState>((set) => ({
 
 const Title = () => {
 	const { style, setStyle } = useStyle((s) => s)
+	const router = usePathname()
 
-	console.log('style', style)
+	useEffect(() => {
+		setStyle(0)
+	}, [setStyle, router])
 
 	const currentStyle = variants[style].style
-	const currentName = variants[style].name
 
-	const nextStyle = (currentIndex: number) => {
-		setStyle(currentIndex + 1 === variants.length ? 0 : currentIndex + 1)
-	}
-
-	let sequence: Sequence = []
-
-	type Sequence = Array<SequenceElement>
-	type SequenceElement = string | number | ((element: HTMLElement | null) => void | Promise<void>)
-
-	variants.map((variant, index) => {
-		sequence = [
-			...sequence,
-			variant.name,
-			3800,
-			() => {
-				nextStyle(index)
-			},
-		]
-	})
+	const nextStyle = (currentIndex: number) => setStyle((currentIndex + 1) % variants.length)
 
 	return (
 		<>
@@ -57,8 +42,18 @@ const Title = () => {
 				עיצוב ופיתוח
 				<span className={`text-transparent bg-clip-text bg-gradient-to-r ${currentStyle}`}>
 					<TypeAnimation
-						sequence={sequence}
-						speed={74}
+						sequence={variants
+							.map((variant, index) => [
+								variant.name,
+								3800,
+								'',
+								'',
+								() => {
+									nextStyle(index)
+								},
+							])
+							.flat()}
+						speed={75}
 						repeat={Infinity}
 						title='פיתוח אתרים'
 					/>
@@ -100,7 +95,7 @@ export const variants = [
 		shadow: 'shadow-lime-500/20',
 	},
 	{
-		name: 'אתרי Startup',
+		name: 'אתרי סטארטאפ',
 		style: 'from-purple-500 to-indigo-500',
 		shadow: 'shadow-indigo-500/20',
 	},
