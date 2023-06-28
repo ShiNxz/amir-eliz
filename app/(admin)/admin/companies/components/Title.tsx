@@ -1,7 +1,7 @@
 'use client'
 
-import { TiGroupOutline } from 'react-icons/ti'
 import useCompaniesStore from '../store'
+import { TiGroupOutline } from 'react-icons/ti'
 import { Button } from '@mantine/core'
 import { MdOutlineAddBusiness } from 'react-icons/md'
 

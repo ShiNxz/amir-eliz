@@ -1,28 +1,27 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import jwt from 'jsonwebtoken'
-import User, { type IUser } from '@/models/Company'
+import Company, { type ICompany } from '@/utils/models/Company'
 
 const AuthMiddleware = (req: NextApiRequest, res: NextApiResponse) => {
-	return new Promise(async (resolve, reject) => {
-		if (!('token' in req.cookies)) return reject(res.status(400).json({ success: false, error: 'error to auth' }))
+	return new Promise(async (resolve) => {
+		if (!('token' in req.cookies)) return res.status(400).json({ success: false, error: 'error to auth' })
 
-		let decoded = jwt.verify(req.cookies.token as string, process.env.JWT_SECRET || '') as IDecodedUser
+		let decoded = jwt.verify(req.cookies.token as string, process.env.JWT_SECRET || '') as IDecodedCompany
 
-		const user = await User.findById(decoded.userId).limit(1)
-		if (!user)
-			return reject(res.status(401).json({ success: false, error: 'לא נמצא משתמש קיים עם הפרטים שנרשמו!' }))
+		const company = await Company.findById(decoded.companyId).limit(1)
+		if (!company) return res.status(401).json({ success: false, error: 'לא נמצא משתמש קיים עם הפרטים שנרשמו!' })
 
-		resolve(user)
+		resolve(company)
 	})
 }
 
-export interface IDBUser extends IUser {
+export interface IDBCompany extends ICompany {
 	markModified(arg0: string): unknown
 	save(): unknown
 }
 
-export interface IDecodedUser extends jwt.JwtPayload {
-	userId: string
+export interface IDecodedCompany extends jwt.JwtPayload {
+	companyId: string
 	iat: number
 }
 

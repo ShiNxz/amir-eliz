@@ -1,3 +1,5 @@
+import ContentForm from './components/ContentForm'
+import Form from './components/Form'
 import Table from './components/Table'
 import Title from './components/Title'
 import { ProjectsStore } from './store'
@@ -8,6 +10,8 @@ const ProjectsPage = () => {
 			<ProjectsStore />
 			<Title />
 			<Table />
+			<Form />
+			<ContentForm />
 		</>
 	)
 }

@@ -3,7 +3,7 @@ import FullDescription from './FullDescription'
 import ProjectImage from './ProjectImage'
 import ProjectSide from './Side'
 import { redirect } from 'next/navigation'
-import Project from '@/models/Project'
+import Project from '@/utils/models/Project'
 import db from '@/utils/db'
 
 const getProject = async (projectId: string) => {

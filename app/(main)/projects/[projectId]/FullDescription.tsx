@@ -1,19 +1,19 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { fadeUp } from '@/utils/animations'
+import { fade } from '@/utils/animations'
 
 const FullDescription = ({ fullDescription }: { fullDescription: string }) => {
 	return (
-		<motion.p
-			variants={fadeUp}
+		<motion.div
+			variants={fade}
 			viewport={{ once: true }}
 			whileInView='in'
 			initial='start'
-			custom={1}
+			custom={2}
 		>
-			{fullDescription}
-		</motion.p>
+			<div dangerouslySetInnerHTML={{ __html: fullDescription }} />
+		</motion.div>
 	)
 }
 

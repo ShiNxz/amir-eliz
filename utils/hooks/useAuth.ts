@@ -3,6 +3,7 @@ import useSWR from 'swr'
 import cookie from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import fetcher from '@/utils/fetcher'
+import notification from '../functions/notification'
 
 const useAuth = (): IAuth => {
 	const router = useRouter()
@@ -17,6 +18,7 @@ const useAuth = (): IAuth => {
 		cookie.remove('token')
 		await mutate()
 		router.push('/')
+		notification(null, 'אישור', 'התנתקת בהצלחה!')
 	}
 
 	return { isLoading, isLoggedIn, user, mutate, logout }

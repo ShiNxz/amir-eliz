@@ -29,6 +29,7 @@ const Title = () => {
 				size='sm'
 				leftIcon={<MdOutlineAddBusiness />}
 				onClick={() => setModal({ project: null, open: true })}
+				gradient={{ from: 'orange', to: 'red' }}
 			>
 				הוספת פרויקט
 			</Button>

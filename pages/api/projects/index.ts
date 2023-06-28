@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import db from '@/utils/db'
-import Project from '@/models/Project'
+import Project from '@/utils/models/Project'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	await db()
@@ -9,7 +9,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	switch (method) {
 		case 'GET': {
 			try {
-				const projects = await Project.find().select('title description image type techs _id').lean()
+				const projects = await Project.find({ pinned: true })
+					.select('title description image type techs _id')
+					.lean()
 
 				const types: string[] = []
 				const techs: string[] = []

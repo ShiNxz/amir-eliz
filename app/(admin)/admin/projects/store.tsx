@@ -1,6 +1,6 @@
 'use client'
 
-import type { IProject } from '@/models/Project'
+import type { IProject } from '@/utils/models/Project'
 import { useEffect } from 'react'
 import { create } from 'zustand'
 import fetcher from '@/utils/fetcher'
@@ -16,14 +16,17 @@ const useProjectsStore = create<IProjectsStore>((set) => ({
 	setMutate: (mutate) => set({ mutate }),
 	setIsLoading: (isLoading) => set({ isLoading }),
 
-	deleteProject: null,
-	setDeleteProject: (project) => set({ deleteProject: project }),
-
 	modal: {
 		project: null,
 		open: false,
 	},
 	setModal: (modal) => set({ modal }),
+
+	modalContent: {
+		project: null,
+		open: false,
+	},
+	setModalContent: (modalContent) => set({ modalContent }),
 }))
 
 interface IProjectsStore {
@@ -34,11 +37,11 @@ interface IProjectsStore {
 	setMutate: (mutate: KeyedMutator<any>) => void
 	setIsLoading: (isLoading: boolean) => void
 
-	deleteProject: IProject | null
-	setDeleteProject: (project: IProject | null) => void
-
 	modal: { project: IProject | null; open: boolean }
 	setModal: (modal: { project: IProject | null; open: boolean }) => void
+
+	modalContent: { project: IProject | null; open: boolean }
+	setModalContent: (modalContent: { project: IProject | null; open: boolean }) => void
 }
 
 export const ProjectsStore = () => {

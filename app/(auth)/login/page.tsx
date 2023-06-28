@@ -12,6 +12,7 @@ import { fadeUp } from '@/utils/animations'
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
 import useAuth from '@/utils/hooks/useAuth'
+import notification, { updateNotification } from '@/utils/functions/notification'
 
 const LoginPage = () => {
 	const router = useRouter()
@@ -31,6 +32,8 @@ const LoginPage = () => {
 	const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
+		notification('phone', 'התחברות', 'אנא המתן...')
+
 		// Validate phone
 		if (!isPhoneValid) setError('מספר הטלפון שהוזן אינו תקין')
 
@@ -41,9 +44,18 @@ const LoginPage = () => {
 				phone,
 			})
 
+			updateNotification('phone', 'אישור', 'קוד אימות נשלח למספר ' + phone)
+
 			setStage('code')
 		} catch (err) {
 			console.error(err)
+
+			updateNotification(
+				'phone',
+				'שגיאה!',
+				(err as any).response.data.message || 'חלה שגיאה במהלך ההתחברות לאתר, אנא נסה שנית מאוחר יותר',
+				'error'
+			)
 		}
 
 		setIsLoading(false)
@@ -52,6 +64,8 @@ const LoginPage = () => {
 	const handleVerify = async (value: string) => {
 		setIsLoading(true)
 
+		notification('login', 'התחברות', 'אנא המתן...')
+
 		try {
 			const { data } = (await axios.post('/api/auth/verify', {
 				phone,
@@ -59,15 +73,24 @@ const LoginPage = () => {
 			})) as { data: { token: string } }
 
 			setStage('done')
+			updateNotification('login', 'אימות', 'התחברת בהצלחה!')
 
 			Cookies.set('token', data.token, { expires: 30 })
 			await mutate()
 
 			setTimeout(() => {
 				router.push('/admin')
-			}, 1000)
+			}, 3000)
 		} catch (err) {
 			console.error(err)
+			console.error((err as any).response.data)
+
+			updateNotification(
+				'login',
+				'שגיאה!',
+				(err as any).response.data.message || 'חלה שגיאה במהלך ההתחברות לאתר, אנא נסה שנית מאוחר יותר',
+				'error'
+			)
 		}
 
 		setIsLoading(false)
@@ -86,7 +109,7 @@ const LoginPage = () => {
 			>
 				ברוכים הבאים! 🤞
 			</motion.h1>
-			<motion.h3
+			<motion.h5
 				className='text-gray-600 mb-10'
 				variants={fadeUp}
 				viewport={{ once: true }}
@@ -96,7 +119,7 @@ const LoginPage = () => {
 				custom={1}
 			>
 				מכאן ניתן לצפות באתרים ובפרויקטים שבבעלותיכם, לנהל את האתרים שלכם ולצפות בסטטיסטיקות ונתונים עדכניים
-			</motion.h3>
+			</motion.h5>
 			<AnimatePresence
 				key={stage}
 				mode='wait'

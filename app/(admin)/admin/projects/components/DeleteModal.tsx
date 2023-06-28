@@ -1,52 +1,46 @@
-import { useState } from 'react'
-import { Group, Button, LoadingOverlay, Modal } from '@mantine/core'
-import useProjectsStore from '../store'
+import type { IProject } from '@/utils/models/Project'
+import { Text } from '@mantine/core'
+import { modals } from '@mantine/modals'
+import { mutate } from 'swr'
+import axios from 'axios'
+import { updateNotification } from '@/utils/functions/notification'
 
-const DeleteModal = () => {
-	const [isLoading, setIsLoading] = useState(false)
+const openDeleteModal = (project: IProject) =>
+	modals.openConfirmModal({
+		modalId: 'delete-project',
+		title: `מחיקת פרויקט: ${project.title}`,
+		centered: true,
+		children: <Text size='sm'>האם אתה בטוח שאתה רוצה למחוק את הפרויקט?</Text>,
+		labels: { confirm: 'מחיקה', cancel: 'ביטול' },
+		confirmProps: { color: 'red' },
+		onConfirm: () => handleDeleteProject(project),
+		closeOnConfirm: false,
+	})
 
-	const deleteProject = useProjectsStore((state) => state.deleteProject)
-	const setDeleteProject = useProjectsStore((state) => state.setDeleteProject)
-	const handleClose = () => setDeleteProject(null)
+const handleDeleteProject = async (project: IProject) => {
+	updateNotification(project._id.toString(), project.title, 'מוחק את הפרויקט...')
 
-	const handleDelete = () => {
-		setIsLoading(true)
-		setTimeout(() => {}, 3000)
-		setIsLoading(false)
+	try {
+		await axios({
+			method: 'DELETE',
+			url: `/api/admin/projects?id=${project._id}`,
+		})
+
+		await mutate('/api/admin/projects')
+
+		updateNotification(project._id.toString(), project.title, 'הפרויקט נמחק בהצלחה!')
+	} catch (e) {
+		console.log(e)
+
+		updateNotification(
+			project._id.toString(),
+			project.title,
+			(e as any).response?.data?.message || 'אירעה שגיאה בעת מחיקת הפרויקט',
+			'error'
+		)
 	}
 
-	return (
-		<Modal
-			opened={!!deleteProject}
-			onClose={isLoading ? () => {} : handleClose}
-			title={`מחיקת פרויקט: ${deleteProject?.title || ''}`}
-			classNames={{
-				title: '!text-xl !font-medium',
-			}}
-			centered
-		>
-			<LoadingOverlay visible={isLoading} />
-
-			<span>האם אתה בטוח שאתה רוצה למחוק את הפרויקט?</span>
-			<Group
-				grow
-				pt={20}
-			>
-				<Button
-					color='blue'
-					onClick={handleClose}
-				>
-					ביטול
-				</Button>
-				<Button
-					color='red'
-					onClick={handleDelete}
-				>
-					אישור מחיקה
-				</Button>
-			</Group>
-		</Modal>
-	)
+	modals.close('delete-project')
 }
 
-export default DeleteModal
+export default openDeleteModal

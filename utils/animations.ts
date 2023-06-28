@@ -1,5 +1,14 @@
 import type { Variants } from 'framer-motion'
 
+export const fade: Variants = {
+	in: (i) => ({
+		opacity: 1,
+		transition: { type: 'spring', stiffness: 300, damping: 22, delay: i * 0.1 },
+	}),
+	start: { opacity: 0, transition: { duration: 0.2 } },
+	exit: { opacity: 0, transition: { duration: 0.2 } },
+}
+
 export const fadeUp: Variants = {
 	in: (i) => ({
 		opacity: 1,

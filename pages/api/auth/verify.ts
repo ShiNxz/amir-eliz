@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
 import axios from 'axios'
 import db from '@/utils/db'
-import Company from '@/models/Company'
+import Company from '@/utils/models/Company'
 import jwt from 'jsonwebtoken'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -41,7 +41,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 					const token = jwt.sign(
 						{
-							userId: company._id,
+							companyId: company._id,
 						},
 						process.env.JWT_SECRET || ''
 					)

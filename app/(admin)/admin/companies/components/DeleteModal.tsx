@@ -1,52 +1,43 @@
-import { useState } from 'react'
-import { Group, Button, LoadingOverlay, Modal } from '@mantine/core'
-import useCompaniesStore from '../store'
+import type { ICompany } from '@/utils/models/Company'
+import axios from 'axios'
+import { Text } from '@mantine/core'
+import { modals } from '@mantine/modals'
+import { mutate } from 'swr'
+import notification, { updateNotification } from '@/utils/functions/notification'
 
-const DeleteModal = () => {
-	const [isLoading, setIsLoading] = useState(false)
+const openDeleteModal = (company: ICompany) =>
+	modals.openConfirmModal({
+		modalId: 'delete-company',
+		title: `מחיקת חברה: ${company.name}`,
+		centered: true,
+		children: <Text size='sm'>האם אתה בטוח שאתה רוצה למחוק את החברה?</Text>,
+		labels: { confirm: 'מחיקה', cancel: 'ביטול' },
+		confirmProps: { color: 'red' },
+		onConfirm: () => handleDeleteCompany(company),
+	})
 
-	const deleteCompany = useCompaniesStore((state) => state.deleteCompany)
-	const setDeleteCompany = useCompaniesStore((state) => state.setDeleteCompany)
-	const handleClose = () => setDeleteCompany(null)
+const handleDeleteCompany = async (company: ICompany) => {
+	notification(company._id.toString(), 'מחיקת חברה..', 'אנא המתן')
 
-	const handleDelete = () => {
-		setIsLoading(true)
-		setTimeout(() => {}, 3000)
-		setIsLoading(false)
+	try {
+		await axios({
+			method: 'DELETE',
+			url: `/api/admin/companies?id=${company._id}`,
+		})
+
+		await mutate('/api/admin/companies')
+
+		updateNotification(company._id.toString(), 'אישור', 'החברה נמחקה בהצלחה!')
+	} catch (e) {
+		console.log(e)
+		updateNotification(
+			company._id.toString(),
+			'שגיאה!',
+			(e as any).response?.data?.message || 'חלה שגיאה בעת מחיקת החברה',
+			'error'
+		)
 	}
-
-	return (
-		<Modal
-			opened={!!deleteCompany}
-			onClose={isLoading ? () => {} : handleClose}
-			title={`מחיקת חברה: ${deleteCompany?.name || ''}`}
-			classNames={{
-				title: '!text-xl !font-medium',
-			}}
-			centered
-		>
-			<LoadingOverlay visible={isLoading} />
-
-			<span>האם אתה בטוח שאתה רוצה למחוק את החברה?</span>
-			<Group
-				grow
-				pt={20}
-			>
-				<Button
-					color='blue'
-					onClick={handleClose}
-				>
-					ביטול
-				</Button>
-				<Button
-					color='red'
-					onClick={handleDelete}
-				>
-					אישור מחיקה
-				</Button>
-			</Group>
-		</Modal>
-	)
+	modals.close('delete-company')
 }
 
-export default DeleteModal
+export default openDeleteModal

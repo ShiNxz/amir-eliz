@@ -32,6 +32,7 @@ const CompanySchema: Schema<ICompany> = new Schema(
 			{
 				type: Schema.Types.ObjectId,
 				ref: 'Project',
+				default: [],
 			},
 		],
 

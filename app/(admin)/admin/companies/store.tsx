@@ -1,6 +1,7 @@
 'use client'
 
-import type { ICompany } from '@/models/Company'
+import type { ICompany } from '@/utils/models/Company'
+import type { IProject } from '@/utils/models/Project'
 import { useEffect } from 'react'
 import { create } from 'zustand'
 import fetcher from '@/utils/fetcher'
@@ -16,14 +17,19 @@ const useCompaniesStore = create<ICompaniesStore>((set) => ({
 	setMutate: (mutate) => set({ mutate }),
 	setIsLoading: (isLoading) => set({ isLoading }),
 
-	deleteCompany: null,
-	setDeleteCompany: (company) => set({ deleteCompany: company }),
-
 	modal: {
 		company: null,
 		open: false,
 	},
 	setModal: (modal) => set({ modal }),
+
+	projectModal: {
+		company: null,
+		open: false,
+	},
+	setProjectModal: (modal) => set({ projectModal: modal }),
+	unusedProjects: [],
+	setUnusedProjects: (unusedProjects) => set({ unusedProjects }),
 }))
 
 interface ICompaniesStore {
@@ -34,24 +40,29 @@ interface ICompaniesStore {
 	setMutate: (mutate: KeyedMutator<any>) => void
 	setIsLoading: (isLoading: boolean) => void
 
-	deleteCompany: ICompany | null
-	setDeleteCompany: (company: ICompany | null) => void
-
 	modal: { company: ICompany | null; open: boolean }
 	setModal: (modal: { company: ICompany | null; open: boolean }) => void
+
+	projectModal: { company: ICompany | null; open: boolean }
+	setProjectModal: (modal: { company: ICompany | null; open: boolean }) => void
+
+	unusedProjects: IProject[]
+	setUnusedProjects: (unusedProjects: IProject[]) => void
 }
 
 export const CompaniesStore = () => {
 	const { data, isLoading, mutate } = useSWR(ENDPOINT, fetcher)
 	const setCompanies = useCompaniesStore((state) => state.setCompanies)
+	const setUnusedProjects = useCompaniesStore((state) => state.setUnusedProjects)
 	const setMutate = useCompaniesStore((state) => state.setMutate)
 	const setIsLoading = useCompaniesStore((state) => state.setIsLoading)
 
 	setMutate(mutate)
-	const { companies } = data || { companies: [] }
+	const { companies, projects } = data || { companies: [], projects: [] }
 
 	useEffect(() => {
 		setCompanies(companies)
+		setUnusedProjects(projects)
 		setIsLoading(isLoading)
 	}, [companies])
 

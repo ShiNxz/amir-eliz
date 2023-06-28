@@ -1,33 +1,26 @@
+'use client'
+
 import { useEffect, useState } from 'react'
-import { useForm } from '@mantine/form'
-import { TextInput, Group, Button, LoadingOverlay, Modal, Checkbox, Textarea } from '@mantine/core'
+import { useForm, zodResolver } from '@mantine/form'
+import { TextInput, Group, Button, LoadingOverlay, Modal, Checkbox, Textarea, Select } from '@mantine/core'
+import { BiHash } from 'react-icons/bi'
 import useProjectsStore from '../store'
+import axios from 'axios'
+import projectSchema from '@/utils/schemas/project'
+import notification, { updateNotification } from '@/utils/functions/notification'
 
 const Form = () => {
 	const [isLoading, setIsLoading] = useState(false)
 
+	const mutate = useProjectsStore((state) => state.mutate)
 	const modal = useProjectsStore((state) => state.modal)
 	const setModal = useProjectsStore((state) => state.setModal)
 
 	const handleClose = () => setModal({ ...modal, open: false })
 
-	const isCloseOutsideDisabled = false
-
 	useEffect(() => {
-		modal.project
-			? form.setValues({
-					title: modal.project.title,
-					description: modal.project.description,
-					image: modal.project.image,
-					pinned: modal.project.pinned,
-					type: modal.project.type,
-					techs: modal.project.techs.join(', '),
-					repository: modal.project.repository,
-					website: modal.project.website,
-					fullDescription: modal.project.fullDescription,
-			  })
-			: form.reset()
-	}, [modal.project])
+		modal.project ? form.setValues({ ...modal.project, techs: modal.project.techs.join(', ') }) : form.reset()
+	}, [modal])
 
 	const form = useForm({
 		initialValues: {
@@ -35,93 +28,123 @@ const Form = () => {
 			description: '',
 			image: '',
 			pinned: false,
-			type: '',
+			type: TYPES[0],
 			techs: '',
 			repository: '',
 			website: '',
-			fullDescription: '',
 		},
+		validate: zodResolver(projectSchema),
 	})
 
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
+		const isEdit = !!modal.project
+
 		setIsLoading(true)
-		setTimeout(() => {}, 3000)
+
+		const id = modal.project?._id.toString() || 'project'
+
+		notification(id, form.values.title, 'מעדכן את הפרויקט..')
+
+		try {
+			await axios({
+				method: isEdit ? 'PUT' : 'POST',
+				url: '/api/admin/projects',
+				data: modal.project ? { ...form.values, id: modal.project._id } : form.values,
+			})
+
+			await mutate()
+			handleClose()
+
+			updateNotification(id, form.values.title, 'השינויים נשמרו בהצלחה')
+		} catch (e) {
+			console.log(e)
+
+			updateNotification(
+				id,
+				form.values.title,
+				(e as any).response?.data?.message || 'אירעה שגיאה בעת עדכון הפרויקט',
+				'error'
+			)
+		}
+
+		await new Promise((resolve) => setTimeout(resolve, 1000))
 		setIsLoading(false)
 	}
 
 	return (
 		<Modal
 			opened={modal.open}
-			onClose={handleClose}
+			onClose={isLoading ? () => {} : handleClose}
 			title={modal.project ? 'עריכת פרויקט' : 'הוספת פרויקט'}
 			classNames={{
 				title: '!text-xl !font-medium',
 			}}
-			closeOnClickOutside={isCloseOutsideDisabled}
+			withCloseButton={!isLoading}
+			closeOnClickOutside={false}
 			centered
+			size='lg'
 		>
 			<form onSubmit={form.onSubmit(handleSubmit)}>
 				<LoadingOverlay visible={isLoading} />
 
-				<TextInput
-					data-autofocus
-					label='שם הפרויקט'
-					{...form.getInputProps('title')}
-				/>
-				<TextInput
-					label='תגיות (מופרדות בפסיק)'
-					{...form.getInputProps('tags')}
-				/>
+				<Group grow>
+					<TextInput
+						data-autofocus
+						label='שם הפרויקט'
+						{...form.getInputProps('title')}
+					/>
+					<Select
+						label='סוג פיתוח'
+						data={TYPES}
+						transitionProps={{ transition: 'pop-top-left', duration: 80, timingFunction: 'ease' }}
+						icon={<BiHash size='1rem' />}
+						searchable
+						nothingFound='לא נמצאו תוצאות'
+						{...form.getInputProps('type')}
+					/>
+				</Group>
+
 				<Textarea
 					label='תיאור'
+					mt='md'
 					{...form.getInputProps('description')}
 				/>
+
 				<TextInput
+					mt='md'
 					label='תמונה'
 					{...form.getInputProps('image')}
 				/>
-				<TextInput
-					label='תמונה'
-					{...form.getInputProps('image')}
-				/>
-
-				<Checkbox
-					label='מסך בית?'
-					{...form.getInputProps('pinned', { type: 'checkbox' })}
-				/>
 
 				<TextInput
-					label='סוג פיתוח'
-					{...form.getInputProps('type')}
-				/>
-
-				<TextInput
+					mt='md'
 					label='טכנלוגיות (מופרדות בפסיק)'
 					{...form.getInputProps('techs')}
-				/>
-
-				<TextInput
-					label='קישור לקוד מקור'
-					{...form.getInputProps('repository')}
-				/>
-
-				<TextInput
-					label='קישור לאתר לייב'
-					{...form.getInputProps('website')}
-				/>
-
-				<Textarea
-					label='תיאור מלא'
-					{...form.getInputProps('fullDescription')}
 				/>
 
 				<Group
 					grow
 					mt='md'
-				></Group>
+				>
+					<TextInput
+						label='קישור לקוד מקור'
+						{...form.getInputProps('repository')}
+					/>
+
+					<TextInput
+						label='קישור לאתר לייב'
+						{...form.getInputProps('website')}
+					/>
+				</Group>
+
+				<Checkbox
+					mt='md'
+					label='הצגה באתר'
+					{...form.getInputProps('pinned', { type: 'checkbox' })}
+				/>
 
 				<Button
-					color='blue'
+					color='orange'
 					type='submit'
 					className='float-left my-4 mt-8'
 				>
@@ -131,5 +154,19 @@ const Form = () => {
 		</Modal>
 	)
 }
+
+export const TYPES = [
+	'אתר אינטרנט',
+	'אפליקציה',
+	'דף נחיתה',
+	'מערכת ניהול / CRM',
+	'מערכת תשלום',
+	'מערכת ניהול תוכן',
+	'חנות אינטרנט',
+	'בלוג',
+	'אתר סטארטאפ',
+	'אתר תדמית',
+	'אתר גיימינג',
+]
 
 export default Form

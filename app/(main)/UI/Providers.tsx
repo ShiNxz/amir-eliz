@@ -2,6 +2,8 @@
 
 import { ReactNode } from 'react'
 import { MantineProvider, createEmotionCache } from '@mantine/core'
+import { Notifications } from '@mantine/notifications'
+import { ModalsProvider } from '@mantine/modals'
 import stylisRTLPlugin from 'stylis-plugin-rtl'
 
 interface IProviders {
@@ -19,7 +21,8 @@ const Providers = ({ children }: IProviders) => {
 			emotionCache={rtlCache}
 			theme={{ dir: 'rtl', colorScheme: 'light' }}
 		>
-			{children}
+			<Notifications />
+			<ModalsProvider>{children}</ModalsProvider>
 		</MantineProvider>
 	)
 }

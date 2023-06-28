@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import db from '@/utils/db'
-import Project from '@/models/Project'
+import Project from '@/utils/models/Project'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	await db()

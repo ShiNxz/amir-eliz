@@ -32,7 +32,7 @@ const ProjectSchema: Schema<IProject> = new Schema(
 
 		repository: String,
 		website: String,
-		fullDescription: String,
+		fullDescription: { type: String, default: '' },
 
 		createdAt: Number,
 		updatedAt: Number,

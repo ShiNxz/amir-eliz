@@ -19,7 +19,7 @@ const Navbar = () => {
 					/> */}
 				<Link
 					href='/'
-					className='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-500 font-bold text-xl py-4'
+					className='text-transparent bg-clip-text bg-gradient-to-r from-gray-700 to-gray-900 font-bold text-xl py-4'
 				>
 					{process.env.NEXT_PUBLIC_WEBSITE_NAME}
 				</Link>
