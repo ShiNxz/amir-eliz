@@ -1,25 +1,12 @@
-import { TiHomeOutline, TiGroupOutline, TiMessages, TiCogOutline, TiSupport } from 'react-icons/ti'
+import { TiHomeOutline, TiGroupOutline, TiMessages } from 'react-icons/ti'
+import { SiWeblate } from 'react-icons/si'
+import { AiOutlineFundProjectionScreen } from 'react-icons/ai'
 
 export const PAGES: IPage[] = [
 	{
 		path: '',
 		title: 'עמוד ראשי',
 		icon: <TiHomeOutline size={18} />,
-	},
-	{
-		path: 'forms',
-		title: 'פניות',
-		icon: <TiMessages size={18} />,
-	},
-	{
-		path: 'settings',
-		title: 'הגדרות משתמש',
-		icon: <TiCogOutline size={18} />,
-	},
-	{
-		path: 'support',
-		title: 'תמיכה',
-		icon: <TiSupport size={18} />,
 	},
 ]
 
@@ -32,7 +19,12 @@ export const ADMIN_PAGES: IPage[] = [
 	{
 		path: 'projects',
 		title: 'ניהול פרויקטים',
-		icon: <TiGroupOutline size={18} />,
+		icon: <AiOutlineFundProjectionScreen size={18} />,
+	},
+	{
+		path: 'domains',
+		title: 'ניהול דומיינים',
+		icon: <SiWeblate size={18} />,
 	},
 	{
 		path: 'forms',

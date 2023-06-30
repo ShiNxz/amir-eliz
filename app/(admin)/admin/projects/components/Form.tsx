@@ -16,10 +16,19 @@ const Form = () => {
 	const modal = useProjectsStore((state) => state.modal)
 	const setModal = useProjectsStore((state) => state.setModal)
 
+	const domains = useProjectsStore((state) => state.domains)
+	const unusedDomains = useProjectsStore((state) => state.unusedDomains)
+
 	const handleClose = () => setModal({ ...modal, open: false })
 
 	useEffect(() => {
-		modal.project ? form.setValues({ ...modal.project, techs: modal.project.techs.join(', ') }) : form.reset()
+		modal.project
+			? form.setValues({
+					...modal.project,
+					techs: modal.project.techs.join(', '),
+					domain: modal.project.connected_domain?.domain || '',
+			  })
+			: form.reset()
 	}, [modal])
 
 	const form = useForm({
@@ -32,13 +41,14 @@ const Form = () => {
 			techs: '',
 			repository: '',
 			website: '',
+			domain: domains[0]?.domain || '',
 		},
 		validate: zodResolver(projectSchema),
 	})
 
-	const handleSubmit = async () => {
-		const isEdit = !!modal.project
+	const isEdit = !!modal.project
 
+	const handleSubmit = async () => {
 		setIsLoading(true)
 
 		const id = modal.project?._id.toString() || 'project'
@@ -137,11 +147,29 @@ const Form = () => {
 					/>
 				</Group>
 
-				<Checkbox
+				<Group
+					grow
 					mt='md'
-					label='הצגה באתר'
-					{...form.getInputProps('pinned', { type: 'checkbox' })}
-				/>
+				>
+					<Select
+						label='דומיין מקושר'
+						data={
+							isEdit
+								? (domains && domains.map((d) => d.domain)) || []
+								: (unusedDomains && unusedDomains.map((d) => d.domain)) || []
+						}
+						transitionProps={{ transition: 'pop-top-left', duration: 80, timingFunction: 'ease' }}
+						icon={<BiHash size='1rem' />}
+						clearable
+						searchable
+						nothingFound='לא נמצאו תוצאות'
+						{...form.getInputProps('domain')}
+					/>
+					<Checkbox
+						label='הצגה באתר'
+						{...form.getInputProps('pinned', { type: 'checkbox' })}
+					/>
+				</Group>
 
 				<Button
 					color='orange'

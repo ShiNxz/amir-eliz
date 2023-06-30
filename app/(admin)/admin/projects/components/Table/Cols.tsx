@@ -42,17 +42,13 @@ const Columns = (
 			companies = companies || []
 
 			return companies.map((c) => c.name).join(', ')
-
-			// return companies.map((company) => (
-			// 	<Link
-			// 		key={company._id}
-			// 		href={'/companies/' + company._id}
-			// 		target='_blank'
-			// 	>
-			// 		{company.name}
-			// 	</Link>
-			// ))
 		},
+	},
+	{
+		field: 'connected_domain',
+		valueFormatter: ({ value }) => (value && value.domain) || 'ללא',
+		headerName: 'דומיין מקושר',
+		minWidth: 150,
 	},
 	{
 		field: 'pinned',
@@ -62,7 +58,7 @@ const Columns = (
 			</div>
 		),
 		headerName: 'מוצג באתר',
-		minWidth: 150,
+		minWidth: 120,
 	},
 	{
 		field: 'type',
@@ -72,7 +68,7 @@ const Columns = (
 	{
 		field: 'createdAt',
 		headerName: 'תאריך יצירה',
-		minWidth: 180,
+		minWidth: 150,
 		valueFormatter: ({ value }) => value && formatToEu(value),
 	},
 	{

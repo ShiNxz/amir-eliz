@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { create } from 'zustand'
 import fetcher from '@/utils/fetcher'
 import useSWR, { type KeyedMutator } from 'swr'
+import { Domain } from '@/utils/models/Domain'
 
 const ENDPOINT = '/api/admin/projects'
 
@@ -27,6 +28,12 @@ const useProjectsStore = create<IProjectsStore>((set) => ({
 		open: false,
 	},
 	setModalContent: (modalContent) => set({ modalContent }),
+
+	domains: [],
+	setDomains: (domains) => set({ domains }),
+
+	unusedDomains: [],
+	setUnusedDomains: (unusedDomains) => set({ unusedDomains }),
 }))
 
 interface IProjectsStore {
@@ -42,6 +49,12 @@ interface IProjectsStore {
 
 	modalContent: { project: IProject | null; open: boolean }
 	setModalContent: (modalContent: { project: IProject | null; open: boolean }) => void
+
+	domains: Domain[]
+	setDomains: (domains: Domain[]) => void
+
+	unusedDomains: Domain[]
+	setUnusedDomains: (unusedDomains: Domain[]) => void
 }
 
 export const ProjectsStore = () => {
@@ -51,11 +64,17 @@ export const ProjectsStore = () => {
 	const setMutate = useProjectsStore((state) => state.setMutate)
 	const setIsLoading = useProjectsStore((state) => state.setIsLoading)
 
+	const setDomains = useProjectsStore((state) => state.setDomains)
+	const setUnusedDomains = useProjectsStore((state) => state.setUnusedDomains)
+
 	setMutate(mutate)
-	const { projects } = data || { projects: [] }
+
+	const { projects, domains, unusedDomains } = data || { projects: [], domains: [], unusedDomains: [] }
 
 	useEffect(() => {
 		setProjects(projects)
+		setDomains(domains)
+		setUnusedDomains(unusedDomains)
 		setIsLoading(isLoading)
 	}, [projects])
 

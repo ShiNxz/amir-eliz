@@ -1,3 +1,4 @@
+import type { Domain } from './Domain'
 import { models, model, Schema, Model, ObjectId } from 'mongoose'
 
 export interface IProject extends Document {
@@ -16,6 +17,11 @@ export interface IProject extends Document {
 	website?: string
 	fullDescription: string
 
+	/**
+	 * Connected Domain, used for the clients projects to see their valid domain exp date and more
+	 */
+	connected_domain: Domain | null
+
 	createdAt: number
 	updatedAt: number
 }
@@ -33,6 +39,12 @@ const ProjectSchema: Schema<IProject> = new Schema(
 		repository: String,
 		website: String,
 		fullDescription: { type: String, default: '' },
+
+		connected_domain: {
+			type: Schema.Types.ObjectId,
+			ref: 'Domain',
+			default: null,
+		},
 
 		createdAt: Number,
 		updatedAt: Number,

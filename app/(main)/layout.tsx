@@ -12,7 +12,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 }
 
 export const metadata = {
-	title: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} | פאנל ניהול`,
+	title: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} | פיתוח ועיצוב אתרים`,
 	robots: {
 		index: false,
 	},

@@ -1,8 +1,7 @@
 'use client'
 
-import { TiGroupOutline } from 'react-icons/ti'
+import { AiOutlineFundProjectionScreen } from 'react-icons/ai'
 import { Button } from '@mantine/core'
-import { MdOutlineAddBusiness } from 'react-icons/md'
 import useProjectsStore from '../store'
 
 const Title = () => {
@@ -14,7 +13,7 @@ const Title = () => {
 			<div className='flex flex-col'>
 				<h2 className='text-3xl font-semibold mb-3 text-gray-700'>ניהול פרויקטים</h2>
 				<div className='flex flex-row items-center gap-2'>
-					<TiGroupOutline className='text-sm text-gray-500' />
+					<AiOutlineFundProjectionScreen className='text-sm text-gray-500' />
 					<h6 className='text-sm font-medium text-gray-500 mb-0'>
 						סה{'"'}כ פרויקטים:{' '}
 						<span className='text-sm font-medium text-gray-700 mb-0 inline-block'>
@@ -27,7 +26,7 @@ const Title = () => {
 				color='gray'
 				variant='gradient'
 				size='sm'
-				leftIcon={<MdOutlineAddBusiness />}
+				leftIcon={<AiOutlineFundProjectionScreen />}
 				onClick={() => setModal({ project: null, open: true })}
 				gradient={{ from: 'orange', to: 'red' }}
 			>

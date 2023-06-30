@@ -613,6 +613,13 @@
     react-remove-scroll "^2.5.5"
     react-textarea-autosize "8.3.4"
 
+"@mantine/dates@^6.0.15":
+  version "6.0.15"
+  resolved "https://registry.npmjs.org/@mantine/dates/-/dates-6.0.15.tgz#8abf09c21c31312254c8fb0db992cbd632e918ff"
+  integrity sha512-dUcVZnfZ4AmyIkPCHxv1834oKNf9Ww9T5Dw7YdRzv5zfGBXjf8vY6YtHgaf5/U2fF1NGgMelY08lFxEYMiAi3w==
+  dependencies:
+    "@mantine/utils" "6.0.15"
+
 "@mantine/form@^6.0.14":
   version "6.0.14"
   resolved "https://registry.npmjs.org/@mantine/form/-/form-6.0.14.tgz#4e1d5a9fb2e32d1e018c66f17a8c738c546f508f"
@@ -1874,6 +1881,11 @@ dash-get@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/dash-get/-/dash-get-1.0.2.tgz#4c9e9ad5ef04c4bf9d3c9a451f6f7997298dcc7c"
   integrity sha512-4FbVrHDwfOASx7uQVxeiCTo7ggSdYZbqs8lH+WU6ViypPlDbe9y6IP5VVUDQBv9DcnyaiPT5XT0UWHgJ64zLeQ==
+
+dayjs@^1.11.8:
+  version "1.11.8"
+  resolved "https://registry.npmjs.org/dayjs/-/dayjs-1.11.8.tgz#4282f139c8c19dd6d0c7bd571e30c2d0ba7698ea"
+  integrity sha512-LcgxzFoWMEPO7ggRv1Y2N31hUf2R0Vj7fuy/m+Bg1K8rr+KAs1AEy4y9jd5DXe8pbHgX+srkHNS7TH6Q6ZhYeQ==
 
 debug@4.x, debug@^4.1.0, debug@^4.1.1, debug@^4.3.2, debug@^4.3.4:
   version "4.3.4"

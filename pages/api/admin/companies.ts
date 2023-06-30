@@ -46,6 +46,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 					const company = await Company.findByIdAndUpdate(req.body.id, data, {
 						new: true,
 					})
+
 					if (!company) return res.status(404).json({ success: false, error: 'החברה לא נמצאת' })
 
 					return res.status(200).json({ success: true, company })
@@ -115,21 +116,5 @@ const projectsSchema = z.object({
 		)
 	),
 })
-
-export interface IProjectsResponse {
-	success: boolean
-	projects: IProject[]
-	types: string[]
-	techs: string[]
-}
-
-export interface IProject {
-	_id: string
-	title: string
-	description: string
-	image: string
-	type: string
-	techs: string[]
-}
 
 export default handler

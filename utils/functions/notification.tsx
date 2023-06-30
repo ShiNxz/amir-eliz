@@ -1,7 +1,14 @@
 import { notifications } from '@mantine/notifications'
 import { FaCheck, FaCross } from 'react-icons/fa'
 
-const notification = (notificationId: null | string, title: string, text: string) =>
+const notification = (
+	notificationId: null | string,
+	title: string,
+	text: string,
+	type: 'normal' | 'warning' | 'error' = 'normal'
+) => {
+	const color = type === 'normal' ? undefined : type === 'error' ? 'red' : type === 'warning' ? 'orange' : 'teal'
+
 	notifications.show({
 		id: notificationId ? notificationId : '',
 		loading: notificationId ? true : false,
@@ -10,7 +17,9 @@ const notification = (notificationId: null | string, title: string, text: string
 		autoClose: notificationId ? false : 3000,
 		withCloseButton: notificationId ? false : true,
 		withBorder: true,
+		color,
 	})
+}
 
 export const updateNotification = async (
 	notificationId: string,

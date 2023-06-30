@@ -67,6 +67,9 @@ const projectSchema = z.object({
 			message: 'הקישור לאתר יכול להכיל עד 500 תוים',
 		})
 		.optional(),
+	domain: z
+		.any()
+		.optional(),
 })
 
 export default projectSchema

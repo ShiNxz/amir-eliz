@@ -5,6 +5,7 @@ import projectSchema from '@/utils/schemas/project'
 import isAdminMiddleware from '@/utils/middlewares/isAdmin'
 import Company from '@/utils/models/Company'
 import limiter from '@/utils/rateLimits'
+import Domain from '@/utils/models/Domain'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	return limiter(req, res, async () => {
@@ -17,7 +18,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 		switch (method) {
 			case 'GET': {
 				try {
-					const projects = await Project.find().lean()
+					const projects = await Project.find().populate('connected_domain').lean()
+					const domains = await Domain.find().lean()
 					const companies = await Company.find().select('_id name projects').lean()
 
 					const projectsWithCompaneis = projects.map((p) => {
@@ -30,7 +32,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 						return { ...p, companies: filteredCompanies }
 					})
 
-					return res.status(200).json({ success: true, projects: projectsWithCompaneis })
+					// Get all the unused domains
+					const unusedDomains = domains.filter(
+						(d) => !projects.find((p) => p.connected_domain && p.connected_domain.domain === d.domain)
+					)
+
+					return res
+						.status(200)
+						.json({ success: true, projects: projectsWithCompaneis, domains, unusedDomains })
 				} catch (error) {
 					console.log(error)
 					return res.status(500).json({ success: false, error })
@@ -39,8 +48,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 			case 'POST': {
 				try {
+					const domains = await GetUnusedDomains()
+
 					const data = projectSchema.parse(req.body)
-					const project = await Project.create({ ...data, techs: data.techs.split(',').map((t) => t.trim()) })
+					const domain = data.domain ? domains.find((d) => d.domain === req.body.domain) : null
+
+					const project = await Project.create({
+						...data,
+						techs: data.techs.split(',').map((t) => t.trim()),
+						connected_domain: domain,
+					})
 
 					return res.status(200).json({ success: true, project })
 				} catch (error) {
@@ -51,11 +68,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 			case 'PUT': {
 				try {
+					const domains = await GetUnusedDomains()
+
 					const data = projectSchema.parse(req.body)
+					const domain = data.domain ? domains.find((d) => d.domain === req.body.domain) : null
 
 					const project = await Project.findByIdAndUpdate(
 						req.body.id,
-						{ ...data, techs: data.techs.split(',').map((t) => t.trim()) },
+						{ ...data, techs: data.techs.split(',').map((t) => t.trim()), connected_domain: domain },
 						{
 							new: true,
 						}
@@ -113,6 +133,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 				return res.status(401).end()
 		}
 	})
+}
+
+const GetUnusedDomains = async () => {
+	const projects = await Project.find().populate('connected_domain').select('connected_domain').lean()
+	const domains = await Domain.find().lean()
+	const unusedDomains = domains.filter(
+		(d) => !projects.find((p) => p.connected_domain && p.connected_domain.domain === d.domain)
+	)
+
+	return unusedDomains
 }
 
 export interface IProjectsResponse {
