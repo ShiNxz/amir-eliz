@@ -5,9 +5,7 @@ import { useForm, zodResolver } from '@mantine/form'
 import { TextInput, Group, Button, LoadingOverlay, Modal, Checkbox } from '@mantine/core'
 import useCompaniesStore from '../store'
 import companySchema from '@/utils/schemas/company'
-import axios, { AxiosError } from 'axios'
-import { notifications } from '@mantine/notifications'
-import { FaCheck, FaCross } from 'react-icons/fa'
+import axios from 'axios'
 import notification, { updateNotification } from '@/utils/functions/notification'
 
 const Form = () => {

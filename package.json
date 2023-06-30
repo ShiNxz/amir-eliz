@@ -45,6 +45,7 @@
 		"clsx": "^1.2.1",
 		"eslint": "8.43.0",
 		"eslint-config-next": "13.4.6",
+		"express-rate-limit": "^6.7.0",
 		"framer-motion": "^10.12.16",
 		"js-cookie": "^3.0.5",
 		"jsonwebtoken": "^9.0.0",
