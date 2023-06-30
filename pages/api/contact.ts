@@ -5,7 +5,7 @@ import contactSchema from '@/utils/schemas/contact'
 import limiter from '@/utils/rateLimits'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-	limiter(req, res, async () => {
+	return limiter(req, res, async () => {
 		await db()
 		const { method } = req
 
@@ -13,10 +13,21 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 			case 'POST': {
 				try {
 					const data = contactSchema.parse(req.body)
-					const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress
 
-					console.log(req.headers['x-forwarded-for'])
-					console.log(req.socket.remoteAddress)
+					console.log('req.headers[x-real-ip]', req.headers['x-real-ip'])
+
+					let ipAddress = req.headers['x-real-ip'] as string
+
+					const forwardedFor = req.headers['x-forwarded-for'] as string
+					if (forwardedFor) {
+						const ips = forwardedFor.split(',').map((ip: string) => ip.trim())
+						ipAddress = ips[0]
+						console.log('ips', ips)
+					} else if (req.socket.remoteAddress) {
+						ipAddress = req.socket.remoteAddress
+					}
+
+					console.log('ipAddress', ipAddress)
 
 					const form = await ContactForm.create({ ...data, ipAddress })
 
