@@ -8,6 +8,11 @@ export const PAGES: IPage[] = [
 		title: 'עמוד ראשי',
 		icon: <TiHomeOutline size={18} />,
 	},
+	{
+		path: 'my',
+		title: 'הפרויקטים שלי',
+		icon: <AiOutlineFundProjectionScreen size={18} />,
+	},
 ]
 
 export const ADMIN_PAGES: IPage[] = [

@@ -12,7 +12,7 @@ const Content = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<ThemeProvider>
 			<motion.div
-				className='h-full w-full bg-slate-100 p-12'
+				className='h-full w-full bg-slate-100 p-10'
 				// style={{ overflowY: 'auto', overflowX: 'hidden' }}
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}

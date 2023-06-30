@@ -46,7 +46,16 @@ const Columns = (
 	},
 	{
 		field: 'connected_domain',
-		valueFormatter: ({ value }) => (value && value.domain) || 'ללא',
+		renderCell: ({ value }) =>
+			(value && (
+				<Link
+					href={`https://${value.domain}`}
+					target='_blank'
+				>
+					{value.domain}
+				</Link>
+			)) ||
+			'ללא',
 		headerName: 'דומיין מקושר',
 		minWidth: 150,
 	},

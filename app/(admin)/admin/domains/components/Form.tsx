@@ -63,7 +63,7 @@ const Form = () => {
 			await mutate()
 			handleClose()
 
-			updateNotification('domain', form.values.domain, isEdit ? 'הדומיין עודכנה בהצלחה' : 'הדומיין נוספה בהצלחה')
+			updateNotification('domain', form.values.domain, isEdit ? 'הדומיין עודכן בהצלחה' : 'הדומיין נוסף בהצלחה')
 		} catch (e) {
 			console.log(e)
 

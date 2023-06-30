@@ -1,6 +1,8 @@
 import type { Domain } from './Domain'
 import { models, model, Schema, Model, ObjectId } from 'mongoose'
 
+export type TStatus = 'ONLINE' | 'OFFLINE' | 'MAINTENANCE'
+
 export interface IProject extends Document {
 	_id: ObjectId
 	title: string
@@ -21,6 +23,10 @@ export interface IProject extends Document {
 	 * Connected Domain, used for the clients projects to see their valid domain exp date and more
 	 */
 	connected_domain: Domain | null
+
+	status: TStatus
+
+	password: string | null
 
 	createdAt: number
 	updatedAt: number
@@ -45,6 +51,14 @@ const ProjectSchema: Schema<IProject> = new Schema(
 			ref: 'Domain',
 			default: null,
 		},
+
+		status: {
+			type: String,
+			enum: ['ONLINE', 'OFFLINE', 'MAINTENANCE'],
+			default: 'ONLINE',
+		},
+
+		password: String,
 
 		createdAt: Number,
 		updatedAt: Number,

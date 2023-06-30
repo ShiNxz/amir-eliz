@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import jwt from 'jsonwebtoken'
 import Company, { type ICompany } from '@/utils/models/Company'
 
-const AuthMiddleware = (req: NextApiRequest, res: NextApiResponse) => {
+const isAuthMiddleware = (req: NextApiRequest, res: NextApiResponse): Promise<ICompany> => {
 	return new Promise(async (resolve) => {
 		if (!('token' in req.cookies)) return res.status(400).json({ success: false, error: 'error to auth' })
 
@@ -25,4 +25,4 @@ export interface IDecodedCompany extends jwt.JwtPayload {
 	iat: number
 }
 
-export default AuthMiddleware
+export default isAuthMiddleware
