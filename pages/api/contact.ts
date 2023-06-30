@@ -15,6 +15,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 					const data = contactSchema.parse(req.body)
 					const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress
 
+					console.log(req.headers['x-forwarded-for'])
+					console.log(req.socket.remoteAddress)
+
 					const form = await ContactForm.create({ ...data, ipAddress })
 
 					return res.status(200).json({ success: true, form })

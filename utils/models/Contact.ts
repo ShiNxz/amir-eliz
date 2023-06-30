@@ -29,7 +29,7 @@ const ContactFormSchema: Schema<ContactForm> = new Schema(
 		updatedAt: Number,
 	},
 	{
-		collection: 'ContactForm',
+		collection: 'ContactForms',
 		timestamps: { currentTime: () => Math.floor(Date.now() / 1000) },
 	}
 )
