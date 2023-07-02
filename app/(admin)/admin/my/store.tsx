@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { create } from 'zustand'
 import fetcher from '@/utils/fetcher'
 import useSWR, { type KeyedMutator } from 'swr'
+import { useLocalStorage } from '@mantine/hooks'
 
 const ENDPOINT = '/api/admin/my'
 
@@ -45,24 +46,49 @@ interface IProjectsStore {
 }
 
 export const ProjectsStore = () => {
-	const { data, isLoading, mutate } = useSWR(ENDPOINT, fetcher)
+	const { data, isLoading, mutate } = useSWR(ENDPOINT, fetcher) as {
+		data: { projects: IProject[] }
+		isLoading: boolean
+		mutate: KeyedMutator<any>
+	}
 
 	const setProjects = useProjectsStore((state) => state.setProjects)
 	const setMutate = useProjectsStore((state) => state.setMutate)
 	const setIsLoading = useProjectsStore((state) => state.setIsLoading)
 
+	const selectedProject = useProjectsStore((state) => state.selectedProject)
 	const setSelectedProject = useProjectsStore((state) => state.setSelectedProject)
+	const [localStorageProject, setLocalStorageProject] = useLocalStorage({ key: 'my-project', defaultValue: '' })
 
 	setMutate(mutate)
 
 	const { projects } = data || { projects: [] }
 
 	useEffect(() => {
+		if (localStorageProject) {
+			const selectedProject = projects.find((project) => project._id.toString() === localStorageProject)
+			if (selectedProject) setSelectedProject(selectedProject)
+			else setSelectedProject(projects[0])
+		}
+	}, [])
+
+	useEffect(() => {
 		setProjects(projects)
-		setSelectedProject(projects[0])
+
+		if (localStorageProject) {
+			const selectedProject = projects.find((project) => project._id.toString() === localStorageProject)
+			if (selectedProject) setSelectedProject(selectedProject)
+			else setSelectedProject(projects[0])
+		}
 
 		setIsLoading(isLoading)
 	}, [projects])
+
+	useEffect(() => {
+		if (selectedProject && selectedProject._id.toString() !== localStorageProject) {
+			setLocalStorageProject(selectedProject._id.toString())
+		}
+	}, [selectedProject])
 
 	return <></>
 }

@@ -43,32 +43,34 @@ const TrustedSection = () => {
 }
 
 // eslint-disable-next-line react/display-name
-const Trusted = forwardRef(({ name, text, avatar }: { name: string; text: string; avatar: string }, ref: any) => {
-	return (
-		<div
-			className='rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-white/60 duration-200 p-8 mx-4 flex flex-col bg-white/40 z-50 shadow-2xl shadow-black/10'
-			ref={ref}
-			dir='rtl'
-		>
-			<span className='text-xl font-medium text-gray-950 pb-8 border-b border-gray-300'>
-				{`"`}
-				{text}
-				{`"`}
-			</span>
-			<div className='flex flex-row gap-2 pt-8'>
-				{/* eslint-disable-next-line @next/next/no-img-element */}
-				<img
-					src={avatar}
-					alt={name}
-					className='rounded-full w-12 h-12'
-				/>
-				<div className='flex flex-col'>
-					<span className='text-gray-950 text-lg font-bold'>{name}</span>
-					<span className='text-gray-700 text-base font-normal'>מנכ{`"`}ל</span>
+const Trusted = forwardRef(
+	({ name, company, text, avatar }: { name: string; company: string; text: string; avatar: string }, ref: any) => {
+		return (
+			<div
+				className='rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-white/60 duration-200 p-8 mx-4 flex flex-col bg-white/40 z-50 shadow-2xl shadow-black/10'
+				ref={ref}
+				dir='rtl'
+			>
+				<span className='text-xl font-medium text-gray-950 pb-8 border-b border-gray-300'>
+					{`"`}
+					{text}
+					{`"`}
+				</span>
+				<div className='flex flex-row gap-2 pt-8'>
+					{/* eslint-disable-next-line @next/next/no-img-element */}
+					<img
+						src={avatar}
+						alt={name}
+						className='rounded-full w-12 h-12'
+					/>
+					<div className='flex flex-col'>
+						<span className='text-gray-950 text-lg font-bold'>{name}</span>
+						<span className='text-gray-700 text-base font-normal'>{company}</span>
+					</div>
 				</div>
 			</div>
-		</div>
-	)
-})
+		)
+	}
+)
 
 export default TrustedSection

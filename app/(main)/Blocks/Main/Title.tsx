@@ -1,11 +1,10 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { create } from 'zustand'
 import { fadeUp } from '@/utils/animations'
-import { TypeAnimation } from 'react-type-animation'
-import { usePathname } from 'next/navigation'
+import Typed from 'typed.js'
 
 interface IStyleState {
 	style: number
@@ -19,15 +18,32 @@ export const useStyle = create<IStyleState>((set) => ({
 
 const Title = () => {
 	const { style, setStyle } = useStyle((s) => s)
-	const router = usePathname()
-
-	useEffect(() => {
-		setStyle(0)
-	}, [setStyle, router])
+	const el = useRef(null)
 
 	const currentStyle = variants[style].style
 
 	const nextStyle = (currentIndex: number) => setStyle((currentIndex + 1) % variants.length)
+
+	useEffect(() => {
+		const typed = new Typed(el.current, {
+			strings: variants.map((v) => v.name), // Strings to display
+			startDelay: 300,
+			backDelay: 5000,
+			smartBackspace: true,
+			loop: true,
+			typeSpeed: 15,
+			backSpeed: 10,
+			onStringTyped(arrayPos) {
+				setTimeout(() => {
+					nextStyle(arrayPos)
+				}, 5115)
+			},
+		})
+
+		return () => {
+			typed.destroy()
+		}
+	}, [])
 
 	return (
 		<>
@@ -40,24 +56,9 @@ const Title = () => {
 				custom={0}
 			>
 				עיצוב ופיתוח
-				<span className={`text-transparent bg-clip-text bg-gradient-to-r ${currentStyle}`}>
-					<TypeAnimation
-						sequence={variants
-							.map((variant, index) => [
-								variant.name,
-								3800,
-								'',
-								'',
-								() => {
-									nextStyle(index)
-								},
-							])
-							.flat()}
-						speed={75}
-						repeat={Infinity}
-						title='פיתוח אתרים'
-					/>
-				</span>
+				<div className={`text-transparent bg-clip-text bg-gradient-to-r ${currentStyle}`}>
+					<span ref={el} />
+				</div>
 			</motion.h1>
 		</>
 	)

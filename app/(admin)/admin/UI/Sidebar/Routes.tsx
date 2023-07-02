@@ -1,45 +1,44 @@
-import { TiHomeOutline, TiGroupOutline, TiMessages } from 'react-icons/ti'
+import { IconNotes, IconCalendarStats, IconGauge, IconHome } from '@tabler/icons-react'
+import { TiGroupOutline, TiMessages } from 'react-icons/ti'
 import { SiWeblate } from 'react-icons/si'
-import { AiOutlineFundProjectionScreen } from 'react-icons/ai'
 
-export const PAGES: IPage[] = [
+export const CLIENT_ROUTES = [
+	{ label: 'עמוד ראשי', icon: IconHome, path: '/admin/' },
 	{
-		path: '',
-		title: 'עמוד ראשי',
-		icon: <TiHomeOutline size={18} />,
-	},
-	{
-		path: 'my',
-		title: 'הפרויקטים שלי',
-		icon: <AiOutlineFundProjectionScreen size={18} />,
+		label: 'הפרויקטים שלי',
+		icon: IconNotes,
+		initiallyOpened: true,
+		links: [
+			{ label: 'ניהול פרויקטים', path: '/admin/my' },
+			{
+				label: `לורם איפסום`,
+				path: '/admin/my2',
+			},
+		],
 	},
 ]
 
-export const ADMIN_PAGES: IPage[] = [
+export const ADMIN_ROUTES = [
+	{ label: 'סטטיסטיקות', icon: IconGauge, path: '/admin/stats' },
 	{
-		path: 'companies',
-		title: 'ניהול חברות',
-		icon: <TiGroupOutline size={18} />,
+		label: 'חברות',
+		icon: TiGroupOutline,
+		initiallyOpened: true,
+		links: [{ label: 'ניהול חברות', path: '/admin/companies' }],
 	},
 	{
-		path: 'projects',
-		title: 'ניהול פרויקטים',
-		icon: <AiOutlineFundProjectionScreen size={18} />,
+		label: 'פרויקטים',
+		icon: IconCalendarStats,
+		links: [{ label: 'ניהול פרויקטים', path: '/admin/projects' }],
 	},
 	{
-		path: 'domains',
-		title: 'ניהול דומיינים',
-		icon: <SiWeblate size={18} />,
+		label: 'דומיינים',
+		icon: SiWeblate,
+		links: [{ label: 'ניהול דומיינים', path: '/admin/domains' }],
 	},
 	{
-		path: 'forms',
-		title: 'ניהול פניות',
-		icon: <TiMessages size={18} />,
+		label: 'פניות',
+		icon: TiMessages,
+		links: [{ label: 'ניהול פניות', path: '/admin/forms' }],
 	},
 ]
-
-export interface IPage {
-	path: string
-	title: string
-	icon: React.ReactElement
-}

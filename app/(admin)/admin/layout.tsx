@@ -1,21 +1,20 @@
 import CheckLogin from './UI/CheckLogin'
 import Content from './UI/Content'
-import Navbar from './UI/Navbar'
-import Sidebar from './UI/Sidebar'
+import SideBar from './UI/Sidebar'
 
 const Layout = ({ children }: LayoutProps) => {
 	return (
 		<>
 			<CheckLogin />
-			<div className='h-screen w-screen flex flex-row'>
-				<Sidebar />
+			<div className='h-screen w-screen flex md:flex-row flex-row'>
+				<SideBar />
+
 				<div
 					className='flex flex-col bg-slate-100'
 					style={{
 						width: '-webkit-fill-available',
 					}}
 				>
-					<Navbar />
 					<Content>{children}</Content>
 				</div>
 			</div>

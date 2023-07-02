@@ -10,7 +10,7 @@ const Home = () => {
 		<div className='flex flex-col gap-6'>
 			<ProjectsStore />
 			<Title />
-			<div className='grid grid-cols-4 gap-4'>
+			<div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
 				<StatBox
 					title='כניסות לאתר היום'
 					value={1000}
