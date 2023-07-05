@@ -22,7 +22,7 @@ const Title = () => {
 				initial='start'
 				custom={0.5}
 			/>
-			<motion.h6
+			<motion.h3
 				className='text-base lg:text-lg text-gray-800 lg:w-2/3 mx-auto mb-8'
 				variants={fadeUp}
 				viewport={{ once: true }}
@@ -32,7 +32,7 @@ const Title = () => {
 			>
 				צפייה בפרויקטים האחרונים שהועלו לאתר, לחיצה על כל פרויקט תפתח את הפרויקט בעמוד נפרד הכולל פירוט מלא על
 				הפרויקט
-			</motion.h6>
+			</motion.h3>
 		</div>
 	)
 }

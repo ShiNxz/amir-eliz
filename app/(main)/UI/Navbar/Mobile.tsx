@@ -15,7 +15,7 @@ const MobileNav = () => {
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ duration: 0.2 }}
 				exit={{ opacity: 0, x: -10 }}
-				className={`backdrop-blur-md bg-white/60 fixed h-full inset flex-col w-full z-[100] container ${
+				className={`backdrop-blur-lg bg-white/60 fixed h-full inset flex-col w-full z-[100] container ${
 					opened ? 'flex' : 'hidden'
 				}`}
 				key={opened.toString()}

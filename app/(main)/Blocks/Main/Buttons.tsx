@@ -28,7 +28,7 @@ const Buttons = () => {
 					צור קשר
 				</Button>
 			</Link>
-			<ScrollLink to='main' smooth duration={500} className='sm:w-fit w-full'>
+			<ScrollLink to='main' smooth duration={500} className='sm:w-fit w-full' href='/'>
 				<Button
 					variant='bordered'
 					className='!font-normal w-full sm:w-fit justify-center'

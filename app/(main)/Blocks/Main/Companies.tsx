@@ -10,6 +10,7 @@ import bte from '@/public/companies/bte.webp'
 import next from '@/public/companies/next.webp'
 import startapp from '@/public/companies/startapp.webp'
 import seeu from '@/public/companies/seeu.webp'
+import { StaticImageData } from 'next/image'
 
 const Companies = () => {
 	return (
@@ -25,36 +26,46 @@ const Companies = () => {
 				חברות וארגונים
 			</motion.span>
 			<div className='flex flex-row gap-12 items-center flex-wrap justify-center'>
-				{comps.map(({ name, logo, href }, index) => (
-					<Link
-						key={name}
-						href={href}
-						target='_blank'
-					>
-						<motion.img
-							src={logo.src}
-							alt={name}
-							className='max-w-[100px] max-h-10 h-auto'
-							draggable={false}
-							variants={fadeUp}
-							viewport={{ once: true }}
-							whileInView='in'
-							initial='start'
-							custom={2 + index * 0.5}
-							whileHover={{ scale: 1.1, transition: { duration: 0.25, delay: 0 } }}
-							height={logo.height}
-							width={logo.width}
-							loading='lazy'
-							title={name}
-						/>
-					</Link>
-				))}
+				{comps.map(({ name, logo, href, height, width }, index) => {
+					return (
+						<Link
+							key={name}
+							href={href}
+							target='_blank'
+						>
+							<motion.img
+								src={logo.src}
+								alt={name}
+								className='max-w-[100px] max-h-10 h-auto'
+								draggable={false}
+								variants={fadeUp}
+								viewport={{ once: true }}
+								whileInView='in'
+								initial='start'
+								custom={2 + index * 0.5}
+								whileHover={{ scale: 1.1, transition: { duration: 0.25, delay: 0 } }}
+								height={height}
+								width={width}
+								loading='lazy'
+								title={name}
+							/>
+						</Link>
+					)
+				})}
 			</div>
 		</div>
 	)
 }
 
-const comps = [
+interface IComp {
+	name: string
+	logo: StaticImageData
+	href: string
+	width: number
+	height: number
+}
+
+const comps: IComp[] = [
 	{
 		name: 'המלקט',
 		logo: hamelaket,

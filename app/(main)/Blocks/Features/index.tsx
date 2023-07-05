@@ -41,7 +41,7 @@ const Features = () => {
 					initial='start'
 					custom={0.5}
 				/>
-				<motion.h6
+				<motion.h3
 					className='text-md lg:text-lg text-gray-800 px-4 lg:px-0 lg:w-4/5 mx-auto mb-8'
 					variants={fadeUp}
 					viewport={{ once: true }}
@@ -51,7 +51,7 @@ const Features = () => {
 				>
 					בין אם אתם צריכים אתר עסקי, בלוג אישי, חנות אינטרנט או כל סוג אחר של אתר, אני מספק פיתוח איכותי
 					ומותאם לצרכים הייחודיים שלכם
-				</motion.h6>
+				</motion.h3>
 				<div className='grid lg:grid-cols-2 gap-10 items-center'>
 					<motion.div
 						variants={fadeLeft}

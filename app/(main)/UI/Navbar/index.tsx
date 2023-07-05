@@ -14,7 +14,7 @@ const Navbar = () => {
 	return (
 		<>
 			<MobileNav />
-			<div className='border-b border-gray-200/60 fixed w-full backdrop-blur-md bg-white/20 z-50'>
+			<div className='border-b border-gray-200/60 fixed w-full backdrop-blur-lg bg-white/20 z-50'>
 				<div className='container flex flex-row items-center justify-between z-50 overflow-y-hidden'>
 					<Link
 						href='/'
