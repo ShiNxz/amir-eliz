@@ -23,7 +23,7 @@ const Content = ({ children }: IProps) => {
 					<LoadingState />
 				) : (
 					<ScrollArea
-						className='bg-slate-100 p-10 md:pt-10 pt-20'
+						className='bg-slate-100 p-2 sm:p-4 md:p-10 md:pt-10 pt-20'
 						h='100vh'
 					>
 						{children}

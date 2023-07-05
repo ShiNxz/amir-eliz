@@ -41,8 +41,6 @@ const useProjectsStore = create<IProjectsStore>((set) => ({
 	removeFilter: (filter) => set((state) => ({ filters: state.filters.filter((f) => f !== filter) })),
 }))
 
-export const NameToKey = (name: string) => name.toLowerCase().replaceAll(/ /g, '_')
-
 export const UseStore = () => {
 	const fetch = useProjectsStore((page) => page.fetch)
 

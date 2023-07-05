@@ -46,7 +46,7 @@ interface LinksGroupProps {
 	path?: string
 	initiallyOpened?: boolean
 	links?: { label: string; path: string }[]
-	closeSidebar: () => void
+	closeSidebar?: () => void
 }
 
 const LinksGroup = ({ icon: Icon, path, label, initiallyOpened, links, closeSidebar }: LinksGroupProps) => {

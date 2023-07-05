@@ -1,7 +1,7 @@
 'use client'
 
 import { Checkbox, Collapse } from '@mantine/core'
-import useProjectsStore, { NameToKey } from './Store'
+import useProjectsStore from './Store'
 import useFilters from './Store'
 import { motion } from 'framer-motion'
 import { fadeRight, fadeUp } from '@/utils/animations'
@@ -15,10 +15,12 @@ const Filters = () => {
 	const filterTypes = [
 		{
 			title: 'סוג האתר',
+			key: 'type',
 			filters: types,
 		},
 		{
 			title: 'טכנולוגיות',
+			key: 'techs',
 			filters: techs,
 		},
 	]
@@ -30,6 +32,7 @@ const Filters = () => {
 					key={filterType.title}
 					title={filterType.title}
 					filters={filterType.filters}
+					filterKey={filterType.key}
 					index={index}
 				/>
 			))}
@@ -37,7 +40,17 @@ const Filters = () => {
 	)
 }
 
-const FilterGroup = ({ title, filters, index }: { title: string; filters: string[]; index: number }) => {
+const FilterGroup = ({
+	title,
+	filters,
+	index,
+	filterKey,
+}: {
+	title: string
+	filters: string[]
+	index: number
+	filterKey: string
+}) => {
 	const [opened, { toggle }] = useDisclosure(index === 0)
 
 	return (
@@ -77,6 +90,7 @@ const FilterGroup = ({ title, filters, index }: { title: string; filters: string
 						keys={filter}
 						title={filter}
 						index={filterIndex + index * 2}
+						filterKey={filterKey}
 					/>
 				))}
 			</Collapse>
@@ -84,17 +98,27 @@ const FilterGroup = ({ title, filters, index }: { title: string; filters: string
 	)
 }
 
-const Filter = ({ title, keys, index }: { title: string; keys: string; index: number }) => {
+const Filter = ({
+	title,
+	keys,
+	index,
+	filterKey,
+}: {
+	title: string
+	keys: string
+	index: number
+	filterKey: string
+}) => {
 	const filters = useFilters((store) => store.filters)
 	const addFilter = useFilters((store) => store.addFilter)
 	const removeFilter = useFilters((store) => store.removeFilter)
 
-	const isInFilters = filters.includes(NameToKey(keys))
+	const isInFilters = filters.includes(`${filterKey}:${keys}`)
 
 	return (
 		<motion.div
-			className='p-3 bg-gray-100 hover:bg-gray-200 rounded-md duration-200 transition-colors cursor-pointer mb-2'
-			onClick={() => (isInFilters ? removeFilter(NameToKey(keys)) : addFilter(NameToKey(keys)))}
+			className='p-3 bg-gray-100 hover:bg-gray-200 rounded-md duration-200 transition-colors cursor-pointer mb-2 flex flex-row items-center gap-2 text-sm'
+			onClick={() => (isInFilters ? removeFilter(`${filterKey}:${keys}`) : addFilter(`${filterKey}:${keys}`))}
 			variants={fadeUp}
 			viewport={{ once: true }}
 			whileInView='in'
@@ -102,12 +126,14 @@ const Filter = ({ title, keys, index }: { title: string; keys: string; index: nu
 			custom={1 + index * 1}
 		>
 			<Checkbox
-				label={title}
 				color='dark'
 				size='sm'
 				checked={isInFilters}
-				onChange={() => (isInFilters ? removeFilter(NameToKey(keys)) : addFilter(NameToKey(keys)))}
+				onChange={() =>
+					isInFilters ? removeFilter(`${filterKey}:${keys}`) : addFilter(`${filterKey}:${keys}`)
+				}
 			/>
+			<span>{title}</span>
 		</motion.div>
 	)
 }

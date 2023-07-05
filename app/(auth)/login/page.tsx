@@ -105,7 +105,7 @@ const LoginPage = () => {
 				ברוכים הבאים! 🤞
 			</motion.h1>
 			<motion.h2
-				className='text-gray-600 mb-10'
+				className='text-gray-600 mb-10 text-lg text-center'
 				variants={fadeUp}
 				viewport={{ once: true }}
 				animate='in'

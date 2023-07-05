@@ -18,8 +18,10 @@ const SideBar = () => {
 	const { user } = useAuth()
 	const isAdmin = !!user?.user.isAdmin
 
+	const isMobile = width < 768
+
 	useEffect(() => {
-		if (!opened && width > 768) {
+		if (!opened && !isMobile) {
 			open()
 		}
 	}, [width])
@@ -29,7 +31,7 @@ const SideBar = () => {
 		<LinksGroup
 			{...item}
 			key={item.label}
-			closeSidebar={close}
+			closeSidebar={isMobile && close || undefined}
 		/>
 	))
 
