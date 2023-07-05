@@ -1,14 +1,15 @@
+import Link from 'next/link'
+
 import { motion } from 'framer-motion'
 import { fadeUp } from '@/utils/animations'
 
 import hamelaket from '@/public/companies/hamelaket.webp'
-import eserv from '@/public/companies/eserv.jpg'
+import eserv from '@/public/companies/eserv.webp'
 import voxbyte from '@/public/companies/voxbyte.svg'
-import buildisrael from '@/public/companies/buildisrael.webp'
+import bte from '@/public/companies/bte.webp'
 import next from '@/public/companies/next.webp'
 import startapp from '@/public/companies/startapp.webp'
 import seeu from '@/public/companies/seeu.webp'
-import Link from 'next/link'
 
 const Companies = () => {
 	return (
@@ -77,7 +78,7 @@ const comps = [
 	},
 	{
 		name: 'BuildIsrael',
-		logo: buildisrael,
+		logo: bte,
 		href: 'https://www.buildisrael.net',
 		width: 40,
 		height: 40,
