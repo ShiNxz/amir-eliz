@@ -109,7 +109,7 @@ const LoginPage = () => {
 			>
 				ברוכים הבאים! 🤞
 			</motion.h1>
-			<motion.h5
+			<motion.h2
 				className='text-gray-600 mb-10'
 				variants={fadeUp}
 				viewport={{ once: true }}
@@ -119,7 +119,7 @@ const LoginPage = () => {
 				custom={1}
 			>
 				מכאן ניתן לצפות באתרים ובפרויקטים שבבעלותיכם, לנהל את האתרים שלכם ולצפות בסטטיסטיקות ונתונים עדכניים
-			</motion.h5>
+			</motion.h2>
 			<AnimatePresence
 				key={stage}
 				mode='wait'
