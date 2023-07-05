@@ -48,8 +48,6 @@ const LoginPage = () => {
 
 			setStage('code')
 		} catch (err) {
-			console.error(err)
-
 			updateNotification(
 				'phone',
 				'שגיאה!',
@@ -82,9 +80,6 @@ const LoginPage = () => {
 				router.push('/admin')
 			}, 3000)
 		} catch (err) {
-			console.error(err)
-			console.error((err as any).response.data)
-
 			updateNotification(
 				'login',
 				'שגיאה!',
