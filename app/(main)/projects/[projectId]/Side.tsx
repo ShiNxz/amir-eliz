@@ -24,7 +24,7 @@ const ProjectSide = ({ title, description, website, repository, techs }: IProjec
 			</Link>
 
 			<motion.h4
-				className='text-4xl font-bold'
+				className='text-2xl sm:text-3xl lg:text-4xl font-bold'
 				variants={fadeRight}
 				viewport={{ once: true }}
 				whileInView='in'
@@ -73,7 +73,7 @@ const ProjectSide = ({ title, description, website, repository, techs }: IProjec
 							size='md'
 							fullWidth
 						>
-							צפייה באתר
+							מעבר לאתר
 						</Button>
 					</Link>
 				)}

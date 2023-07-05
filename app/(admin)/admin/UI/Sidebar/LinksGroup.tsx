@@ -46,9 +46,10 @@ interface LinksGroupProps {
 	path?: string
 	initiallyOpened?: boolean
 	links?: { label: string; path: string }[]
+	closeSidebar: () => void
 }
 
-const LinksGroup = ({ icon: Icon, path, label, initiallyOpened, links }: LinksGroupProps) => {
+const LinksGroup = ({ icon: Icon, path, label, initiallyOpened, links, closeSidebar }: LinksGroupProps) => {
 	const { classes, theme } = useStyles()
 	const hasLinks = Array.isArray(links)
 	const [opened, setOpened] = useState(initiallyOpened || false)
@@ -59,6 +60,7 @@ const LinksGroup = ({ icon: Icon, path, label, initiallyOpened, links }: LinksGr
 			href={link.path}
 			passHref
 			key={link.label}
+			onClick={closeSidebar}
 		>
 			<Text className={classes.link}>{link.label}</Text>
 		</Link>
@@ -66,7 +68,10 @@ const LinksGroup = ({ icon: Icon, path, label, initiallyOpened, links }: LinksGr
 
 	if (path) {
 		return (
-			<Link href={path}>
+			<Link
+				href={path}
+				onClick={closeSidebar}
+			>
 				<UnstyledButton
 					onClick={() => setOpened((o) => !o)}
 					className={classes.control}

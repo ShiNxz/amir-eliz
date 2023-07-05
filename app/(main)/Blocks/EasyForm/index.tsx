@@ -19,7 +19,7 @@ const EasyForm = () => {
 			>
 				אני מעוניין בפיתוח..
 			</motion.span>
-			<div className='grid sm:grid-cols-2 xl:grid-cols-3 gap-4 w-full xl:w-2/3'>
+			<div className='grid grid-cols-2 lg:grid-cols-3 gap-4 w-full xl:w-2/3'>
 				{ServiceTypes.map((service, index) => {
 					const ServiceIcon = service.icon
 

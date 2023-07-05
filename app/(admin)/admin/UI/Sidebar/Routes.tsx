@@ -8,13 +8,7 @@ export const CLIENT_ROUTES = [
 		label: 'הפרויקטים שלי',
 		icon: IconNotes,
 		initiallyOpened: true,
-		links: [
-			{ label: 'ניהול פרויקטים', path: '/admin/my' },
-			{
-				label: `לורם איפסום`,
-				path: '/admin/my2',
-			},
-		],
+		links: [{ label: 'ניהול פרויקטים', path: '/admin/my' }],
 	},
 ]
 

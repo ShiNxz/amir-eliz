@@ -24,7 +24,7 @@ const Features = () => {
 			/>
 			<div className='flex flex-col gap-2 container text-center'>
 				<motion.h2
-					className='text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-gray-950 z-20'
+					className='text-4xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-gray-950 z-20'
 					variants={fadeDown}
 					viewport={{ once: true }}
 					whileInView='in'
@@ -42,7 +42,7 @@ const Features = () => {
 					custom={0.5}
 				/>
 				<motion.h6
-					className='text-md lg:text-lg text-gray-800 w-4/5 mx-auto mb-8'
+					className='text-md lg:text-lg text-gray-800 px-4 lg:px-0 lg:w-4/5 mx-auto mb-8'
 					variants={fadeUp}
 					viewport={{ once: true }}
 					whileInView='in'

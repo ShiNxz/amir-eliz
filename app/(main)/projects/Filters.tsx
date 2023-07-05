@@ -43,7 +43,7 @@ const FilterGroup = ({ title, filters, index }: { title: string; filters: string
 	return (
 		<div className='flex flex-col'>
 			<div
-				className='flex flex-row items-center justify-between'
+				className='flex flex-row items-center justify-between cursor-pointer'
 				onClick={toggle}
 			>
 				<motion.h4

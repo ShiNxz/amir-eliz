@@ -1,11 +1,11 @@
-import { fadeRight, fadeUp } from '@/utils/animations'
+import { fadeUp } from '@/utils/animations'
 import { motion } from 'framer-motion'
 
 const Title = () => {
 	return (
 		<div className='flex flex-col gap-2 container text-center mb-6'>
 			<motion.h2
-				className='text-2xl xl:text-6xl font-bold text-gray-950'
+				className='text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-950'
 				variants={fadeUp}
 				viewport={{ once: true }}
 				whileInView='in'
@@ -23,15 +23,15 @@ const Title = () => {
 				custom={0.5}
 			/>
 			<motion.h6
-				className='text-base lg:text-lg text-gray-800 w-2/3 mx-auto mb-8'
+				className='text-base lg:text-lg text-gray-800 lg:w-2/3 mx-auto mb-8'
 				variants={fadeUp}
 				viewport={{ once: true }}
 				whileInView='in'
 				initial='start'
 				custom={1}
 			>
-				לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית להאמית קרהשק סכעיט דז מא, מנכם למטכין נשואי מנורך.
-				הועניב היושבב שערש שמחויט
+				צפייה בפרויקטים האחרונים שהועלו לאתר, לחיצה על כל פרויקט תפתח את הפרויקט בעמוד נפרד הכולל פירוט מלא על
+				הפרויקט
 			</motion.h6>
 		</div>
 	)

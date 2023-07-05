@@ -13,7 +13,7 @@ import useAuth from '@/utils/hooks/useAuth'
 
 const SideBar = () => {
 	const { width } = useViewportSize()
-	const [opened, { toggle, open }] = useDisclosure(false)
+	const [opened, { toggle, open, close }] = useDisclosure(false)
 	const [view, setView] = useState<'CLIENT' | 'ADMIN'>('CLIENT')
 	const { user } = useAuth()
 	const isAdmin = !!user?.user.isAdmin
@@ -29,6 +29,7 @@ const SideBar = () => {
 		<LinksGroup
 			{...item}
 			key={item.label}
+			closeSidebar={close}
 		/>
 	))
 

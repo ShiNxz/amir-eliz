@@ -8,7 +8,7 @@ const ProjectSelect = () => {
 
 	return (
 		<Select
-			className='w-3/5 md:w-1/5'
+			className='w-full md:w-1/5'
 			data={projects.map((project) => ({
 				value: project._id.toString(),
 				label: project.title,

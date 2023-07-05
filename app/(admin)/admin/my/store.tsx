@@ -65,7 +65,7 @@ export const ProjectsStore = () => {
 	const { projects } = data || { projects: [] }
 
 	useEffect(() => {
-		if (localStorageProject) {
+		if (localStorageProject && localStorageProject.length > 0) {
 			const selectedProject = projects.find((project) => project._id.toString() === localStorageProject)
 			if (selectedProject) setSelectedProject(selectedProject)
 			else setSelectedProject(projects[0])
@@ -75,10 +75,14 @@ export const ProjectsStore = () => {
 	useEffect(() => {
 		setProjects(projects)
 
-		if (localStorageProject) {
+		if (localStorageProject && localStorageProject.length > 0) {
+			console.log('there')
 			const selectedProject = projects.find((project) => project._id.toString() === localStorageProject)
 			if (selectedProject) setSelectedProject(selectedProject)
 			else setSelectedProject(projects[0])
+		} else if (!localStorageProject || localStorageProject === '') {
+			console.log('here')
+			setSelectedProject(projects[0])
 		}
 
 		setIsLoading(isLoading)

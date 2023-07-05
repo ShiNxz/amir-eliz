@@ -21,9 +21,9 @@ const ProjectPage = async ({ params: { projectId } }: { params: { projectId: str
 	const project = await getProject(projectId)
 
 	return (
-		<div className='py-40 container'>
-			<div className='grid grid-cols-11 mb-52'>
-				<div className='col-span-4 border-l border-gray-200 pl-14'>
+		<div className='py-24 lg:py-40 lg:container'>
+			<div className='grid lg:grid-cols-11 mb-52 px-4 sm:px-8 lg:px-0'>
+				<div className='lg:col-span-4 lg:border-b-0 border-b lg:border-l border-l-0 border-gray-200 lg:pl-14 mb-12 lg:mb-0'>
 					<ProjectSide
 						title={project.title}
 						description={project.description}
@@ -33,7 +33,7 @@ const ProjectPage = async ({ params: { projectId } }: { params: { projectId: str
 					/>
 				</div>
 
-				<div className='col-span-7 pr-14 flex flex-col gap-16'>
+				<div className='lg:col-span-7 lg:pr-14 flex flex-col gap-16'>
 					<ProjectImage image={project.image} />
 					<FullDescription fullDescription={project.fullDescription} />
 				</div>
