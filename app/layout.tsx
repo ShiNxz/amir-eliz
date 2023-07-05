@@ -19,6 +19,7 @@ export const metadata = {
 	alternates: {
 		canonical: `https://${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}`,
 	},
+	themeColor: '#33ACFF',
 	icons: [
 		{
 			rel: 'icon',

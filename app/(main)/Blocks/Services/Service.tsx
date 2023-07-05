@@ -32,11 +32,15 @@ const Service = ({ tab }: IProps) => {
 					src={service.image}
 					alt={service.title}
 					className='w-full h-96 shadow-lg rounded-lg object-cover'
+					height={667}
+					width={384}
 					variants={fadeUpSlide}
 					viewport={{ once: true }}
 					whileInView='in'
 					initial='start'
 					custom={4}
+					loading='lazy'
+					title={service.title}
 				/>
 			</AnimatePresence>
 		</div>

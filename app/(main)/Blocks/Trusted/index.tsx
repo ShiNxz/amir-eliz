@@ -59,11 +59,13 @@ const Trusted = forwardRef(
 					{`"`}
 				</span>
 				<div className='flex flex-row gap-2 pt-8'>
-					{/* eslint-disable-next-line @next/next/no-img-element */}
 					<img
 						src={avatar}
 						alt={name}
+						title={name}
 						className='rounded-full w-12 h-12'
+						width={48}
+						height={48}
 					/>
 					<div className='flex flex-col'>
 						<span className='text-gray-950 text-lg font-bold'>{name}</span>

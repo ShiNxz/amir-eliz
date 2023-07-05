@@ -65,9 +65,13 @@ export const Project = ({ index, title, description, _id, image, type }: IProjec
 				custom={3 + index * 0.7}
 			>
 				<img
-					className='w-full h-48 object-cover'
+					className='w-full h-56 object-cover'
+					loading='lazy'
 					src={image}
 					alt={title}
+					title={title}
+					width={372}
+					height={224}
 				/>
 				<div className='p-4 flex flex-col h-52 justify-between'>
 					<div>

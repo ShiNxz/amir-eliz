@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion'
 import { fadeUp } from '@/utils/animations'
 
-import hamelaket from '@/public/companies/hamelaket.png'
+import hamelaket from '@/public/companies/hamelaket.webp'
 import eserv from '@/public/companies/eserv.jpg'
 import voxbyte from '@/public/companies/voxbyte.svg'
-import buildisrael from '@/public/companies/buildisrael.png'
-import next from '@/public/companies/next.png'
-import startapp from '@/public/companies/startapp.png'
-import seeu from '@/public/companies/seeu.png'
+import buildisrael from '@/public/companies/buildisrael.webp'
+import next from '@/public/companies/next.webp'
+import startapp from '@/public/companies/startapp.webp'
+import seeu from '@/public/companies/seeu.webp'
 import Link from 'next/link'
 
 const Companies = () => {
@@ -42,6 +42,9 @@ const Companies = () => {
 							custom={2 + index * 0.5}
 							whileHover={{ scale: 1.1, transition: { duration: 0.25, delay: 0 } }}
 							height={logo.height}
+							width={logo.width}
+							loading='lazy'
+							title={name}
 						/>
 					</Link>
 				))}
