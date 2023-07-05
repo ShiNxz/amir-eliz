@@ -76,7 +76,7 @@ const comps: IComp[] = [
 	{
 		name: 'VoxByte',
 		logo: voxbyte,
-		href: 'voxbyte.io',
+		href: 'https://voxbyte.io',
 		width: 100,
 		height: 33,
 	},
