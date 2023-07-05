@@ -11,7 +11,7 @@ import FeaturesArray from '@/data/Features'
 const Features = () => {
 	return (
 		<div
-			className='border-t border-gray-200 bg-white py-24 relative overflow-y-clip'
+			className='border-t border-gray-200 bg-white py-14 md:py-16 lg:py-20 xl:py-24 relative overflow-y-clip'
 			id='main'
 		>
 			<Particle
@@ -24,7 +24,7 @@ const Features = () => {
 			/>
 			<div className='flex flex-col gap-2 container text-center'>
 				<motion.h2
-					className='text-6xl font-bold text-gray-950 z-20'
+					className='text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-gray-950 z-20'
 					variants={fadeDown}
 					viewport={{ once: true }}
 					whileInView='in'
@@ -34,7 +34,7 @@ const Features = () => {
 					הפיתוח המושלם עבורכם
 				</motion.h2>
 				<motion.div
-					className='bg-gradient-to-r from-blue-500 to-cyan-500 h-1 w-16 mx-auto'
+					className='bg-gradient-to-r from-blue-500 to-cyan-500 h-0.5 lg:h-1 w-16 mx-auto'
 					variants={fadeUp}
 					viewport={{ once: true }}
 					whileInView='in'
@@ -42,7 +42,7 @@ const Features = () => {
 					custom={0.5}
 				/>
 				<motion.h6
-					className='text-lg text-gray-800 w-4/5 mx-auto mb-8'
+					className='text-md lg:text-lg text-gray-800 w-4/5 mx-auto mb-8'
 					variants={fadeUp}
 					viewport={{ once: true }}
 					whileInView='in'
@@ -52,13 +52,14 @@ const Features = () => {
 					בין אם אתם צריכים אתר עסקי, בלוג אישי, חנות אינטרנט או כל סוג אחר של אתר, אני מספק פיתוח איכותי
 					ומותאם לצרכים הייחודיים שלכם
 				</motion.h6>
-				<div className='grid grid-cols-2 gap-10 items-center'>
+				<div className='grid lg:grid-cols-2 gap-10 items-center'>
 					<motion.div
 						variants={fadeLeft}
 						viewport={{ once: true }}
 						whileInView='in'
 						initial='start'
 						custom={3}
+						className='hidden lg:block'
 					>
 						<LottiePlayer
 							animationData={lottieFile}
@@ -85,7 +86,7 @@ const Feature = ({ index, icon, title, text }: IFeature) => {
 
 	return (
 		<motion.div
-			className='flex flex-col gap-2 p-6 text-start'
+			className='flex flex-col gap-2 p-6 lg:text-start text-center items-center lg:items-start'
 			variants={fadeRight}
 			viewport={{ once: true }}
 			whileInView='in'
@@ -98,8 +99,8 @@ const Feature = ({ index, icon, title, text }: IFeature) => {
 					size={20}
 				/>
 			</div>
-			<h3 className='text-3xl font-semibold text-gray-950'>{title}</h3>
-			<p className='text-gray-700'>{text}</p>
+			<h3 className='text-2xl lg:text-3xl font-semibold text-gray-950'>{title}</h3>
+			<p className='text-gray-700 text-sm lg:text-base'>{text}</p>
 		</motion.div>
 	)
 }

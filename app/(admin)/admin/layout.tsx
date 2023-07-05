@@ -6,17 +6,10 @@ const Layout = ({ children }: LayoutProps) => {
 	return (
 		<>
 			<CheckLogin />
-			<div className='h-screen w-screen flex md:flex-row flex-row'>
+			<div className='min-h-screen w-screen flex md:flex-row flex-row'>
 				<SideBar />
 
-				<div
-					className='flex flex-col bg-slate-100'
-					style={{
-						width: '-webkit-fill-available',
-					}}
-				>
-					<Content>{children}</Content>
-				</div>
+				<Content>{children}</Content>
 			</div>
 		</>
 	)

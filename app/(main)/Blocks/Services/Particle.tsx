@@ -16,7 +16,7 @@ const Particle = ({ style }: { style: string }) => {
 				},
 			}}
 			key={style}
-			className={`absolute h-[320px] w-[650px] blur-[50px] rounded-full bg-gradient-to-r ${style} -left-10 bottom-12 -z-10`}
+			className={`absolute h-32 w-36 lg:h-52 lg:w-80 xl:h-[320px] xl:w-[650px] blur-[50px] rounded-full bg-gradient-to-r ${style} xl:-left-10 bottom-12 -z-10`}
 		/>
 	)
 }

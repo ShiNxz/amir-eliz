@@ -2,8 +2,8 @@ import Link from 'next/link'
 
 const Footer = () => {
 	return (
-		<div className='border-t border-gray-200 bg-gray-50'>
-			<div className='flex flex-row p-20 container min-h-[10rem] justify-between'>
+		<div className='border-t border-gray-200 bg-gray-50 text-center lg:text-right'>
+			<div className='flex flex-col-reverse lg:flex-row p-10 lg:p-20 container min-h-[10rem] justify-between'>
 				<div className='flex flex-row gap-24'>
 					{LINKS.map(({ title, links }) => (
 						<Section
@@ -23,7 +23,7 @@ const Footer = () => {
 					))}
 				</div>
 
-				<div className='flex flex-col gap-2 text-end'>
+				<div className='flex flex-col gap-2 text-end mb-12 lg:mb-0'>
 					<Logo />
 					<span className='text-sm'>© 2019-{new Date().getFullYear().toString()}</span>
 				</div>

@@ -88,7 +88,7 @@ const ContactForm = () => {
 	return (
 		<>
 			<motion.form
-				className='rounded-xl bg-white flex flex-col gap-4 items-start p-6'
+				className='sm:rounded-xl bg-white flex flex-col gap-4 items-start p-4 sm:p-6 xl:mb-0 mb-12'
 				viewport={{ once: true }}
 				whileInView={{ opacity: 1 }}
 				initial={{ opacity: 0 }}

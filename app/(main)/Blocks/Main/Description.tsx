@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 const Description = () => {
 	return (
 		<motion.h2
-			className='text-2xl text-gray-600 w-1/2 text-center mx-auto'
+			className='text-lg sm:text-xl lg:text-2xl text-gray-600 px-8 2xl:px-0 2xl:w-1/2 text-center lg:mx-auto'
 			variants={fadeUp}
 			viewport={{ once: true }}
 			whileInView='in'

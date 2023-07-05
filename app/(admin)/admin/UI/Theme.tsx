@@ -15,12 +15,14 @@ import ComponentsOverrides from './ThemeOverrides'
 import { SpotlightProvider } from '@mantine/spotlight'
 import actions from './Actions'
 import { FaSearch } from 'react-icons/fa'
+import useAuth from '@/utils/hooks/useAuth'
 
 const ThemeProvider = ({ children }: IProps) => {
 	const themeMode = 'LIGHT'
 	const isLight = themeMode === 'LIGHT'
 
 	const router = useRouter()
+	const { user } = useAuth()
 
 	const FONT_PRIMARY = 'var(--font-noto)'
 
@@ -43,7 +45,7 @@ const ThemeProvider = ({ children }: IProps) => {
 	const theme = createTheme(themeOptions)
 	theme.components = ComponentsOverrides(theme)
 
-	const ACTIONS = actions(router)
+	const ACTIONS = actions(router, !!user?.user.isAdmin)
 
 	return (
 		<CacheProvider value={cacheRtl}>

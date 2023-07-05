@@ -19,7 +19,7 @@ const Particle = ({ style, variant }: { style: string; variant: 'RIGHT' | 'LEFT'
 					duration: 0.5,
 				},
 			}}
-			className={`absolute h-[220px] w-[800px] blur-[50px] rounded-full -bottom-32 right-1/2 ${style} ${
+			className={`absolute h-20 w-72 sm:w-96 lg:w-72 lg:h-52 xl:h-[220px] xl:w-[800px] blur-[30px] xl:blur-[50px] rounded-full -bottom-4 xl:-bottom-32 right-1/2 ${style} ${
 				variant === 'LEFT' ? '' : ''
 			}`}
 		/>

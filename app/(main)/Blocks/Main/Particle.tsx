@@ -16,7 +16,7 @@ const Particle = ({ style, variant }: { style: string; variant: 'TL' | 'BR' }) =
 					duration: 0.7,
 				},
 			}}
-			className={`absolute h-80 w-80 blur-[110px] bg-gradient-to-r rounded-full ${style} -z-10 ${
+			className={`absolute h-52 w-36 2xl:h-80 2xl:w-80 blur-3xl xl:blur-[110px] bg-gradient-to-r rounded-full ${style} -z-10 ${
 				variant === 'TL' ? 'left-[-5%]' : 'right-[-5%]'
 			}`}
 		/>

@@ -1,3 +1,4 @@
+import CheckAdmin from '../UI/CheckAdmin'
 import ContentForm from './components/ContentForm'
 import Form from './components/Form'
 import Table from './components/Table'
@@ -12,6 +13,7 @@ const ProjectsPage = () => {
 			<Table />
 			<Form />
 			<ContentForm />
+			<CheckAdmin />
 		</>
 	)
 }

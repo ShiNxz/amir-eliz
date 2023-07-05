@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 const Title = () => {
 	return (
 		<motion.h2
-			className='text-4xl font-bold text-gray-950 mb-2'
+			className='text-2xl md:text-3xl lg:text-4xl font-bold text-gray-950 mb-2 text-center sm:text-right'
 			variants={fadeUp}
 			viewport={{ once: true }}
 			whileInView='in'

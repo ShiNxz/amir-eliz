@@ -10,7 +10,7 @@ const Services = () => {
 	const [tab, setTab] = useState(0)
 
 	return (
-		<div className='container grid grid-cols-5 gap-28 py-32 min-h-[20rem] relative'>
+		<div className='container flex flex-col lg:grid grid-cols-1 xl:grid-cols-5 gap-10 xl:gap-28 py-14 md:py-16 lg:py-20 xl:py-32 min-h-[20rem] relative'>
 			<Particle style={ServiceTypes[tab].style} />
 			<Tabs
 				tab={tab}

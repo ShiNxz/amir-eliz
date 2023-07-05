@@ -23,14 +23,13 @@ const Companies = () => {
 			>
 				חברות וארגונים
 			</motion.span>
-			<div className='flex flex-row gap-12 items-center'>
+			<div className='flex flex-row gap-12 items-center flex-wrap justify-center'>
 				{comps.map(({ name, logo, href }, index) => (
 					<Link
 						key={name}
 						href={href}
 						target='_blank'
 					>
-						{/* eslint-disable-next-line @next/next/no-img-element */}
 						<motion.img
 							src={logo.src}
 							alt={name}
@@ -42,6 +41,7 @@ const Companies = () => {
 							initial='start'
 							custom={2 + index * 0.5}
 							whileHover={{ scale: 1.1, transition: { duration: 0.25, delay: 0 } }}
+							height={logo.height}
 						/>
 					</Link>
 				))}
@@ -55,36 +55,50 @@ const comps = [
 		name: 'המלקט',
 		logo: hamelaket,
 		href: 'https://hamelaket.co.il',
+		width: 130,
+		height: 37,
 	},
 	{
 		name: 'VoxByte',
 		logo: voxbyte,
 		href: 'voxbyte.io',
+		width: 100,
+		height: 33,
 	},
 	{
 		name: 'ESERV',
 		logo: eserv,
 		href: 'https://www.eserv.co.il',
+		width: 100,
+		height: 37,
 	},
 	{
 		name: 'BuildIsrael',
 		logo: buildisrael,
 		href: 'https://www.buildisrael.net',
+		width: 40,
+		height: 40,
 	},
 	{
 		name: 'Next-il',
 		logo: next,
 		href: 'https://next-il.co.il',
+		width: 100,
+		height: 24,
 	},
 	{
 		name: 'StartApp',
 		logo: startapp,
 		href: 'https://start-app.co.il',
+		width: 40,
+		height: 40,
 	},
 	{
 		name: 'SeeU',
 		logo: seeu,
 		href: 'https://hamelaket.co.il',
+		width: 100,
+		height: 29,
 	},
 ]
 

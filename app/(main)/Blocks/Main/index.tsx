@@ -10,7 +10,7 @@ const MainBlock = () => {
 	const { style } = useStyle()
 
 	return (
-		<div className='min-h-screen pt-48 pb-20 flex flex-col items-center justify-between gap-10 relative overflow-x-hidden'>
+		<div className='min-h-screen pt-40 xl:pt-48 pb-20 flex flex-col items-center justify-between gap-10 relative overflow-hidden'>
 			<Particle
 				style={variants[style].style}
 				variant='TL'

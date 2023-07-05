@@ -22,6 +22,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 				user: {
 					phone: company.user.phone,
 					name: company.user.name,
+					isAdmin: company.user.isAdmin,
 				},
 				name: company.name,
 			}
@@ -40,6 +41,7 @@ export interface IAuthUser {
 	user: {
 		phone: string
 		name: string
+		isAdmin: boolean
 	}
 }
 

@@ -4,9 +4,9 @@ import { fadeRight, fadeUp } from '@/utils/animations'
 
 const Tabs = ({ tab, setTab }: IProps) => {
 	return (
-		<div className='flex flex-col col-span-2'>
+		<div className='flex flex-col xl:col-span-2 w-full'>
 			<motion.h4
-				className='font-bold text-6xl mb-6'
+				className='font-bold text-4xl xl:text-6xl mb-6 w-full'
 				variants={fadeRight}
 				viewport={{ once: true }}
 				whileInView='in'
@@ -42,7 +42,7 @@ interface IProps {
 const Tab = ({ children, active, onClick, style, index }: ITabProps) => {
 	return (
 		<motion.div
-			className={`text-xl font-medium cursor-pointer duration-[500ms] transition-colors relative mb-4 py-1 z-20 w-fit px-4 flex flex-row items-center gap-2 ${
+			className={`text-xl font-medium cursor-pointer duration-[500ms] transition-colors relative mb-4 py-1 z-20 w-full xl:w-fit px-4 flex flex-row items-center gap-2 ${
 				active ? 'text-white' : 'text-gray-800'
 			}`}
 			onClick={onClick}

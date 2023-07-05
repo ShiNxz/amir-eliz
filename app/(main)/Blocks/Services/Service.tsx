@@ -9,7 +9,7 @@ const Service = ({ tab }: IProps) => {
 		<div className='flex flex-col gap-4 col-span-3'>
 			<AnimatePresence key={ServiceTypes[tab].title}>
 				<motion.h4
-					className='text-5xl font-semibold'
+					className='text-3xl lg:text-4xl xl:text-5xl font-semibold'
 					variants={fadeRight2}
 					viewport={{ once: true }}
 					whileInView='in'

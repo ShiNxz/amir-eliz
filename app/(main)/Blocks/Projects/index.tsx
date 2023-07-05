@@ -14,9 +14,9 @@ const Projects = () => {
 	const projects = useHomeStore((page) => page.projects)
 
 	return (
-		<div className='py-32 container'>
+		<div className='py-14 md:py-16 lg:py-20 xl:py-32 container'>
 			<Title />
-			<div className='grid grid-cols-3 gap-8'>
+			<div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
 				{projects.map((project, index) => (
 					<Project
 						key={project._id}

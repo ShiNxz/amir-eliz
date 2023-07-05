@@ -1,3 +1,4 @@
+import CheckAdmin from '../UI/CheckAdmin'
 import Form from './components/Form'
 import ProjectsForm from './components/Projects'
 import Table from './components/Table'
@@ -12,6 +13,7 @@ const CompaniesPage = () => {
 			<Table />
 			<Form />
 			<ProjectsForm />
+			<CheckAdmin />
 		</>
 	)
 }

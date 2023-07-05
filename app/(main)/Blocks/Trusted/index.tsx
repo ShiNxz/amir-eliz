@@ -6,12 +6,14 @@ import Flicking from '@egjs/react-flicking'
 import '@egjs/react-flicking/dist/flicking.css'
 import { AutoPlay } from '@egjs/flicking-plugins'
 import TrustedArray from '@/data/Trusted'
+import { useMediaQuery } from '@mantine/hooks'
 
 const TrustedSection = () => {
 	const plugins = [new AutoPlay({ duration: 4000, direction: 'PREV', stopOnHover: false })]
+	const matches = useMediaQuery('(min-width: 1024px)');
 
 	return (
-		<div className='py-32 bg-white relative overflow-clip'>
+		<div className='py-16 md:py-20 lg:py-26 xl:py-32 bg-white relative overflow-clip'>
 			<Particle
 				style='bg-indigo-500'
 				variant='LEFT'
@@ -26,7 +28,7 @@ const TrustedSection = () => {
 			>
 				<Flicking
 					circular={true}
-					panelsPerView={2}
+					panelsPerView={matches ? 2 : 1}
 					plugins={plugins}
 					align='prev'
 				>

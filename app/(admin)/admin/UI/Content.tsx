@@ -1,8 +1,9 @@
 'use client'
 
-import useAuth from '@/utils/hooks/useAuth'
-import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
+import { ScrollArea } from '@mantine/core'
+import { motion } from 'framer-motion'
+import useAuth from '@/utils/hooks/useAuth'
 import ThemeProvider from './Theme'
 
 const Content = ({ children }: IProps) => {
@@ -12,13 +13,22 @@ const Content = ({ children }: IProps) => {
 	return (
 		<ThemeProvider>
 			<motion.div
-				className='h-full w-full bg-slate-100 p-10 md:pt-10 pt-20'
+				className='w-full'
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ duration: 0.25 }}
 				key={path}
 			>
-				{!isLoggedIn || isLoading ? <LoadingState /> : <>{children}</>}
+				{!isLoggedIn || isLoading ? (
+					<LoadingState />
+				) : (
+					<ScrollArea
+						className='bg-slate-100 p-10 md:pt-10 pt-20'
+						h='100vh'
+					>
+						{children}
+					</ScrollArea>
+				)}
 			</motion.div>
 		</ThemeProvider>
 	)

@@ -22,8 +22,7 @@ import { fadeUp } from '@/utils/animations'
 const Techs = () => {
 	return (
 		<div className='flex flex-col items-center p-8 bg-gray-900 shadow-lg'>
-			{/* <span className='text-lg text-gray-100 tracking-wide mb-8'>שימוש וידע במעל ל10 שפות תכנות וטכנולוגיות</span> */}
-			<div className='flex flex-row justify-between items-center container'>
+			<div className='flex flex-row lg:justify-between flex-wrap gap-4 items-center container justify-center'>
 				{TECHS.map((t, index) => (
 					<Link
 						href={t.link}

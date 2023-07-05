@@ -2,7 +2,7 @@ import LinkButton from './LinkButton'
 
 const LinkButtons = () => {
 	return (
-		<div className='grid grid-cols-3 gap-4'>
+		<div className='grid grid-cols-1 xl:grid-cols-3 gap-4'>
 			<LinkButton
 				title='ניהול פרויקטים'
 				text='מעבר לניהול הפרויקטים שלי'

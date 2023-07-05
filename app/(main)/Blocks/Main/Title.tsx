@@ -33,6 +33,7 @@ const Title = () => {
 			loop: true,
 			typeSpeed: 15,
 			backSpeed: 10,
+			showCursor: false,
 			onStringTyped(arrayPos) {
 				setTimeout(() => {
 					nextStyle(arrayPos)
@@ -48,7 +49,7 @@ const Title = () => {
 	return (
 		<>
 			<motion.h1
-				className='text-8xl font-black text-gray-800 text-center flex flex-row gap-6'
+				className='text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-gray-800 text-center flex flex-col lg:flex-row lg:gap-6'
 				viewport={{ once: true }}
 				variants={fadeUp}
 				whileInView='in'

@@ -1,3 +1,4 @@
+import CheckAdmin from '../UI/CheckAdmin'
 import { DomainsStore } from '../domains/store'
 import CheckDomains from './components/CheckDomains'
 import Form from './components/Form'
@@ -12,6 +13,7 @@ const DomainsPage = () => {
 			<Table />
 			<Form />
 			<CheckDomains />
+			<CheckAdmin />
 		</>
 	)
 }
