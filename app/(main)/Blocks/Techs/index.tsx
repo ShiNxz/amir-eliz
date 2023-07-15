@@ -15,6 +15,7 @@ import sass from '@/public/assets/techs/sass.svg'
 import typescript from '@/public/assets/techs/typescript.svg'
 import prisma from '@/public/assets/techs/prisma.svg'
 import socketio from '@/public/assets/techs/socketio.svg'
+import redis from '@/public/assets/techs/redis.svg'
 
 import { motion } from 'framer-motion'
 import { fadeUp } from '@/utils/animations'
@@ -112,6 +113,11 @@ const TECHS = [
 		name: 'Socket.IO',
 		img: socketio,
 		link: 'https://socket.io',
+	},
+	{
+		name: 'Redis',
+		img: redis,
+		link: 'https://redis.io',
 	},
 ]
 

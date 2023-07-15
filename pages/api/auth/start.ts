@@ -1,9 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
-import axios from 'axios'
 import db from '@/utils/db'
 import Company from '@/utils/models/Company'
 import limiter from '@/utils/rateLimits'
+import Verifly, { Init } from 'verifly-js'
+
+Init('62b21571d6813a50e61e5894ba064dbf')
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	limiter(req, res, async () => {
@@ -27,25 +29,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 					try {
 						const formattedNumber = phoneNumber.format('E.164')
 
-						await axios.post(
-							`${process.env.VERIFLY_API_URL}/start`,
-							{
-								phone: formattedNumber,
-								method: 'SMS',
-								template: `ברוך הבא ${company.user.name}! קוד האימות שלך: {{code}}`,
-								mode: process.env.VERIFLY_MODE,
-							},
-							{
-								headers: {
-									Authorization: `Bearer ${process.env.VERIFLY_API_KEY}`,
-								},
-							}
-						)
+						await Verifly.start(formattedNumber, {
+							template: `ברוך הבא ${company.user.name}! קוד האימות שלך: {{code}}`,
+							mode: process.env.VERIFLY_MODE as 'LIVE' | 'SANDBOX',
+						})
 
 						return res.status(200).json({ success: true })
 					} catch (error) {
-						console.log((error as any).response.data)
-						return res.status(500).json({ success: false, error: (error as any).response.data })
+						return res.status(500).json({ success: false, error })
 					}
 				} catch (error) {
 					return res.status(500).json({ success: false, error })
