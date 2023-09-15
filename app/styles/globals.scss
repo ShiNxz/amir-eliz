@@ -15,6 +15,14 @@ html {
 	}
 }
 
+@layer components {
+	.project-full-description {
+		& img {
+			@apply shadow-xl rounded h-full object-cover my-12;
+		}
+	}
+}
+
 .styles_react-code-input__CRulA {
 	direction: ltr;
 	margin-top: 10px;

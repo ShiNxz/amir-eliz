@@ -11,6 +11,7 @@ const FullDescription = ({ fullDescription }: { fullDescription: string }) => {
 			whileInView='in'
 			initial='start'
 			custom={2}
+			className='project-full-description'
 		>
 			<div dangerouslySetInnerHTML={{ __html: fullDescription }} />
 		</motion.div>

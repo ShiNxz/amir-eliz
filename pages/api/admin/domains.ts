@@ -90,8 +90,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 					// check if the domain connected to a project
 					const project = await Project.findOne({ connected_domain: domain._id })
-					console.log(project)
-
 					if (project) return res.status(400).json({ success: false, message: 'הדומיין משויך לפרויקט!' })
 
 					await domain.deleteOne()

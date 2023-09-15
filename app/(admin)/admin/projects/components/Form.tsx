@@ -8,6 +8,7 @@ import useProjectsStore from '../store'
 import axios from 'axios'
 import projectSchema from '@/utils/schemas/project'
 import notification, { updateNotification } from '@/utils/functions/notification'
+import { TextField } from '@mui/material'
 
 const Form = () => {
 	const [isLoading, setIsLoading] = useState(false)
@@ -17,7 +18,7 @@ const Form = () => {
 	const setModal = useProjectsStore((state) => state.setModal)
 
 	const domains = useProjectsStore((state) => state.domains)
-	const unusedDomains = useProjectsStore((state) => state.unusedDomains)
+	// const unusedDomains = useProjectsStore((state) => state.unusedDomains)
 
 	const handleClose = () => setModal({ ...modal, open: false })
 
@@ -126,9 +127,10 @@ const Form = () => {
 					{...form.getInputProps('image')}
 				/>
 
-				<TextInput
+				<Textarea
 					mt='md'
-					label='טכנלוגיות (מופרדות בפסיק)'
+					label='טכנולוגיות (מופרדות בפסיק)'
+					rows={3}
 					{...form.getInputProps('techs')}
 				/>
 
@@ -153,11 +155,7 @@ const Form = () => {
 				>
 					<Select
 						label='דומיין מקושר'
-						data={
-							isEdit
-								? (domains && domains.map((d) => d.domain)) || []
-								: (unusedDomains && unusedDomains.map((d) => d.domain)) || []
-						}
+						data={(domains && domains.map((d) => d.domain)) || []}
 						transitionProps={{ transition: 'pop-top-left', duration: 80, timingFunction: 'ease' }}
 						icon={<BiHash size='1rem' />}
 						clearable

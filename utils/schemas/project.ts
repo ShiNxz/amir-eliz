@@ -48,8 +48,8 @@ const projectSchema = z.object({
 		.min(3, {
 			message: 'הטכנולוגיות צריכות להכיל יותר מ-3 תוים',
 		})
-		.max(50, {
-			message: 'הטכנולוגיות יכולות להכיל עד 50 תוים',
+		.max(200, {
+			message: 'הטכנולוגיות יכולות להכיל עד 200 תוים',
 		}),
 	repository: z
 		.string({

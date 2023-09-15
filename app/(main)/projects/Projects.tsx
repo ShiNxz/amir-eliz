@@ -12,6 +12,9 @@ const Projects = () => {
 		<Skeleton height={450} radius="lg" />
 		<Skeleton height={450} radius="lg" />
 		<Skeleton height={450} radius="lg" />
+		<Skeleton height={450} radius="lg" />
+		<Skeleton height={450} radius="lg" />
+		<Skeleton height={450} radius="lg" />
 	</>
 
 	const filteredProjects = projects

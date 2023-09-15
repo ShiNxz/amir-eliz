@@ -43,7 +43,7 @@ const ProjectSide = ({ title, description, website, repository, techs }: IProjec
 				{description}
 			</motion.p>
 			<motion.div
-				className='flex flex-row gap-2 border-t border-b border-gray-200/90 py-4'
+				className='flex flex-col gap-2 border-t border-b border-gray-200/90 py-4'
 				variants={fadeRight}
 				viewport={{ once: true }}
 				whileInView='in'
@@ -51,7 +51,7 @@ const ProjectSide = ({ title, description, website, repository, techs }: IProjec
 				custom={3}
 			>
 				<b>טכנולוגיות:</b>
-				{techs.join(', ')}
+				<span className='text-left'>{techs.join(', ')}</span>
 			</motion.div>
 			<motion.div
 				className='flex flex-row gap-2 mt-6'
