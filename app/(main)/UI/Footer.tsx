@@ -68,7 +68,7 @@ const LINKS = [
 const Logo = () => (
 	<Link
 		href='/'
-		className='text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-500 font-bold text-3xl'
+		className='text-slate-900 font-bold text-3xl'
 	>
 		AmirEliz
 	</Link>

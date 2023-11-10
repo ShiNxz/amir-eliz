@@ -164,7 +164,7 @@ const Form = () => {
 						{...form.getInputProps('domain')}
 					/>
 					<Checkbox
-						label='הצגה באתר'
+						label='הצג בעמוד הבית'
 						{...form.getInputProps('pinned', { type: 'checkbox' })}
 					/>
 				</Group>

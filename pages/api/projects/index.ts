@@ -9,7 +9,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	switch (method) {
 		case 'GET': {
 			try {
-				const projects = await Project.find({ pinned: true })
+				const projects = await Project.find()
 					.select('title description image type techs _id')
 					.lean()
 

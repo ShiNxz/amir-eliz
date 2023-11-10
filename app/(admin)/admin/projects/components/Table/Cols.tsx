@@ -60,14 +60,24 @@ const Columns = (
 		minWidth: 150,
 	},
 	{
+		field: 'toBeEdited', // todo
+		renderCell: ({ value }) => (
+			<div className={`rounded-full py-1 px-3 text-xs text-white ${value ? 'bg-orange-500' : 'bg-blue-500'}`}>
+				{!value ? <RxCheck /> : <RxCross2 />}
+			</div>
+		),
+		headerName: 'מוצג באתר',
+		minWidth: 100,
+	},
+	{
 		field: 'pinned',
 		renderCell: ({ value }) => (
 			<div className={`rounded-full py-1 px-3 text-xs text-white ${value ? 'bg-orange-500' : 'bg-blue-500'}`}>
 				{value ? <RxCheck /> : <RxCross2 />}
 			</div>
 		),
-		headerName: 'מוצג באתר',
-		minWidth: 120,
+		headerName: 'מוצג בעמוד הבית',
+		minWidth: 150,
 	},
 	{
 		field: 'type',
@@ -102,7 +112,7 @@ const Columns = (
 						variant='filled'
 						leftIcon={<FaEdit />}
 						onClick={() => setModalContent({ open: true, project: params.row })}
-						disabled={!params.row.pinned}
+						disabled={params.row.toBeEdited} // todo
 					>
 						עריכת תוכן
 					</Button>
