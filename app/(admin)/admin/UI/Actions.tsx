@@ -1,9 +1,8 @@
-import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context'
 import { SpotlightAction } from '@mantine/spotlight'
 import { FaHome } from 'react-icons/fa'
 import { ADMIN_ROUTES, CLIENT_ROUTES } from './Sidebar/Routes'
 
-const actions = (router: AppRouterInstance, isAdmin: boolean): SpotlightAction[] => [
+const actions = (router: any, isAdmin: boolean): SpotlightAction[] => [
 	{
 		title: 'דף הבית',
 		description: `מעבר לדף הבית`,
