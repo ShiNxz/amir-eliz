@@ -10,24 +10,28 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 	switch (method) {
 		case 'GET': {
-			if (!('token' in req.cookies)) return res.status(400).json({ success: false, error: 'error to auth' })
+			try {
+				if (!('token' in req.cookies)) return res.status(400).json({ success: false, error: 'error to auth' })
 
-			let decoded = jwt.verify(req.cookies.token as string, process.env.JWT_SECRET || '') as IDecodedCompany
+				let decoded = jwt.verify(req.cookies.token as string, process.env.JWT_SECRET || '') as IDecodedCompany
 
-			const company = await Company.findById(decoded.companyId).limit(1)
-			if (!company) return res.status(401).json({ success: false, error: 'לא נמצא משתמש קיים עם הפרטים שנרשמו!' })
+				const company = await Company.findById(decoded.companyId).limit(1)
+				if (!company) return res.status(401).json({})
 
-			const authUser: IAuthUser = {
-				_id: company._id.toString(),
-				user: {
-					phone: company.user.phone,
-					name: company.user.name,
-					isAdmin: company.user.isAdmin,
-				},
-				name: company.name,
+				const authUser: IAuthUser = {
+					_id: company._id.toString(),
+					user: {
+						phone: company.user.phone,
+						name: company.user.name,
+						isAdmin: company.user.isAdmin,
+					},
+					name: company.name,
+				}
+
+				return res.status(200).json({ success: true, user: authUser })
+			} catch (error) {
+				return res.status(401).json({})
 			}
-
-			return res.status(200).json({ success: true, user: authUser })
 		}
 
 		default:

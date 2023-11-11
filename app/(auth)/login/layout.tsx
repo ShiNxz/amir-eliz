@@ -4,9 +4,13 @@ const Layout = ({ children }: LayoutProps) => {
 	return (
 		<>
 			<CheckLogin />
-			<div className='grid lg:grid-cols-2 h-screen w-full'>
-				<div className='col-span-1 flex flex-col justify-center items-center px-8 lg:px-0 lg:w-1/2 mx-auto'>{children}</div>
-				<div className='col-span-1 bg-gray-200 hidden lg:flex flex-col justify-center items-center'>text</div>
+			<div className='grid lg:grid-cols-10 h-screen w-full'>
+				<div className='col-span-6 flex flex-col justify-center items-center px-8 lg:px-0 lg:w-1/2 mx-auto'>
+					{children}
+				</div>
+				<div className='col-span-4 hidden lg:block p-4'>
+					<div className='flex flex-col bg-gradient-to-tr py-20 from-blue-400 to-cyan-500 w-full h-full rounded-xl'></div>
+				</div>
 			</div>
 		</>
 	)

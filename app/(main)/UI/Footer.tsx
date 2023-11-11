@@ -54,6 +54,10 @@ const LINKS = [
 		title: 'פרויקטים אחרונים',
 		links: [
 			{
+				title: 'BuildIsrael',
+				href: 'https://buildisrael.net',
+			},
+			{
 				title: 'Next-il',
 				href: 'https://next-il.co.il',
 			},
@@ -68,7 +72,7 @@ const LINKS = [
 const Logo = () => (
 	<Link
 		href='/'
-		className='text-slate-900 font-bold text-3xl'
+		className='text-slate-8700 font-bold text-3xl'
 	>
 		AmirEliz
 	</Link>

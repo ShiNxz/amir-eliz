@@ -51,12 +51,12 @@ const Techs = () => {
 const TECHS = [
 	{
 		name: 'React',
-		img: nextjs.src,
+		img: react.src,
 		link: 'https://react.dev',
 	},
 	{
 		name: 'Next.js',
-		img: react.src,
+		img: nextjs.src,
 		link: 'https://nextjs.org',
 	},
 	{
