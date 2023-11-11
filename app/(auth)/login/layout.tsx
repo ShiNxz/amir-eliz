@@ -9,7 +9,13 @@ const Layout = ({ children }: LayoutProps) => {
 					{children}
 				</div>
 				<div className='col-span-4 hidden lg:block p-4'>
-					<div className='flex flex-col bg-gradient-to-tr py-20 from-blue-400 to-cyan-500 w-full h-full rounded-xl'></div>
+					<div
+						className='flex flex-col bg-gradient-to-tr py-20 from-purple-400 to-indigo-500 w-full h-full rounded-xl bg-cover bg-center'
+						style={{
+							backgroundImage:
+								'url("https://cdn.dribbble.com/users/1277985/screenshots/5966047/media/003be8d3e5868b9aa4573d65bdf2e2af.png")',
+						}}
+					/>
 				</div>
 			</div>
 		</>

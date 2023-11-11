@@ -28,7 +28,7 @@ const Columns = (
 	{
 		field: 'companies',
 		headerName: 'חברות',
-		minWidth: 200,
+		minWidth: 120,
 		renderCell: ({
 			row: { companies },
 		}: {
@@ -87,7 +87,7 @@ const Columns = (
 	{
 		field: 'createdAt',
 		headerName: 'תאריך יצירה',
-		minWidth: 150,
+		minWidth: 120,
 		valueFormatter: ({ value }) => value && formatToEu(value),
 	},
 	{
