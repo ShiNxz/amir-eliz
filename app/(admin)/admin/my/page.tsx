@@ -15,7 +15,7 @@ const ProjectsPage = () => {
 }
 
 export const metadata = {
-	title: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} | הפרויקטים שלי`,
+    title: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} | הפרויקטים שלי`
 }
 
 export default ProjectsPage

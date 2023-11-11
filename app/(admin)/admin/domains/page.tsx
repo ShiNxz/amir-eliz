@@ -19,7 +19,7 @@ const DomainsPage = () => {
 }
 
 export const metadata = {
-	title: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} | ניהול דומיינים`,
+    title: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} | ניהול דומיינים`
 }
 
 export default DomainsPage

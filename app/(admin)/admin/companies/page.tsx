@@ -19,7 +19,7 @@ const CompaniesPage = () => {
 }
 
 export const metadata = {
-	title: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} | ניהול חברות`,
+    title: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} | ניהול חברות`
 }
 
 export default CompaniesPage

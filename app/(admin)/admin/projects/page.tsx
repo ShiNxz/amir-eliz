@@ -19,7 +19,7 @@ const ProjectsPage = () => {
 }
 
 export const metadata = {
-	title: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} | ניהול פרויקטים`,
+    title: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} | ניהול פרויקטים`
 }
 
 export default ProjectsPage

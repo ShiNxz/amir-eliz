@@ -15,7 +15,7 @@ const ContactFormsPage = () => {
 }
 
 export const metadata = {
-	title: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} | ניהול פניות`,
+    title: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} | ניהול פניות`
 }
 
 export default ContactFormsPage
