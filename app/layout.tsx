@@ -1,6 +1,7 @@
+import type { Metadata, Viewport } from 'next'
 import { Noto_Sans_Hebrew as NotoHE } from 'next/font/google'
-import keywords from '../data/SEO'
 import { description, title } from './../data/SEO'
+import keywords from '../data/SEO'
 import Providers from './(main)/UI/Providers'
 
 import './styles/globals.scss'
@@ -11,15 +12,26 @@ const notoHe = NotoHE({
 	variable: '--font-noto',
 })
 
-export const metadata = {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
+	return (
+		<html
+			lang='he'
+			dir='rtl'
+		>
+			<body className={notoHe.className}>
+				<Providers>{children}</Providers>
+			</body>
+		</html>
+	)
+}
+
+export const metadata: Metadata = {
 	title,
 	description,
 	keywords,
-	viewport: 'width=device-width, initial-scale=1',
 	alternates: {
 		canonical: `https://${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}`,
 	},
-	themeColor: '#33ACFF',
 	icons: [
 		{
 			rel: 'icon',
@@ -45,17 +57,9 @@ export const metadata = {
 	metadataBase: new URL(`https://${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}`),
 }
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
-	return (
-		<html
-			lang='he'
-			dir='rtl'
-		>
-			<body className={notoHe.className}>
-				<Providers>{children}</Providers>
-			</body>
-		</html>
-	)
+export const viewport: Viewport = {
+	themeColor: '#33ACFF',
+	colorScheme: 'light',
 }
 
 export default RootLayout
