@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 import limiter from '@/utils/rateLimits'
 import Verifly, { Init } from 'verifly-js'
 
-Init('62b21571d6813a50e61e5894ba064dbf')
+Init(process.env.VERIFLY_API_KEY as string)
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	limiter(req, res, async () => {
